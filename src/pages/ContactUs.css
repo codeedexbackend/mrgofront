@@ -1,0 +1,60 @@
+.main {
+    background-image: url(https://i.postimg.cc/5NN9vG58/Rectangle-81-1.png);
+    /* background-image: url(https://i.postimg.cc/157rpkFF/FREE-HDconvert-com-Shipping.png); */
+
+    background-size: cover;
+    background-position: center;
+    min-height: 110vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -2%;
+}
+
+.row {
+    width: 100%;
+    max-width: 1200px; 
+}
+
+.col {
+    flex: 1;
+}
+
+.footer1{
+    margin-top: -127px;
+}
+
+.form-container {
+    background-color: rgba(248, 249, 250, 0.7); /* Use rgba with alpha (0.7) for transparency */
+    padding: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 450px; /* Set a maximum width for the form container */
+    margin-left: auto; /* Push the form to the right */
+    /* Optional: Add margin to the right if needed */
+}
+
+.form-container input,
+.form-container textarea {
+    background-color: rgba(255, 255, 255, 0.9); /* Adjust alpha value for input transparency */
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+/* Media query for small screens */
+@media (max-width: 767px) {
+    .form-container {
+        margin-left: 0; /* Reset margin for small screens */
+        margin-right: 0;
+    }
+    .ct{
+        /* margin-top: -110px; */
+    }
+    .main{
+        margin-top: -4%;
+    }
+}

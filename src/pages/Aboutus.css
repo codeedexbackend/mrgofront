@@ -1,0 +1,54 @@
+/* Default styles for larger screens */
+
+
+div[style*="background-color:white;"] {
+    background-color: white;
+}
+.pt{
+    width: 30%;
+    height:70px ;
+    margin-left: 130px;
+    
+    
+}
+#abimage{
+    width: 100%;
+    height: 500px;
+    margin-top: -2%;
+}
+
+/* Media query for screens up to 768 pixels wide */
+@media only screen and (max-width: 768px) {
+    img {
+        height: auto;
+        
+        
+    }
+    #abimage{
+        width: 100%;
+        height: 225px;
+margin-top: -16px;
+    }
+
+    div[style*="background-color:white;"] {
+        padding: 10px;
+    }
+    
+    
+    .partners1{
+        margin-right: -20px;
+    }
+    
+   .pt{
+    width: 36%;
+    height: 57px;
+    margin-left: 77px;
+    margin-top: -17px;
+   } 
+   .pt2{
+    margin-top: 16px;
+   }
+   
+}
+
+/* Add more media queries and styles as needed for other screen sizes */

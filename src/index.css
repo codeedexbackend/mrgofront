@@ -1,0 +1,20 @@
+
+body {
+  margin: 0;
+  
+ 
+}
+*{
+  font-family: "Montserrat", sans-serif;
+
+}
+@media (max-width: 767px) {
+  .yu{
+width: 100%;
+  }
+}
+
+#nvb{
+  margin-left: 4%;
+ }
+ 

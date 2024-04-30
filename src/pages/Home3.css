@@ -1,0 +1,223 @@
+.p2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 44px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  #lo{
+    width: 75%;
+  }
+  .p1 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 10%;
+  }
+  .p11 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 10%;
+  }
+  .vv {
+    background-color: #dae4f7;
+    top: 195px;
+    left: 122px;
+    border-radius: 18px;
+    width: 100%;
+  }
+  .vvv {
+    color: #ee1b2579;
+    font-family: "Montserrat", sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 78px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  .vvvvv {
+    width: 60%;
+    height: 60%;
+    top: 256px;
+    left: 343px;
+    background-color: white;
+    margin-left: 20%;
+  }
+  .pp {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  .sliding-bar {
+    max-width: 800px;
+    margin: auto;
+  }
+  .ff {
+    width: 50px;
+    height: 50px;
+    top: 396px;
+    left: 386px;
+  }
+  .row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 1;
+    margin: 10px;
+    padding: 10px;
+    /* border: 1px solid #ccc; */
+  }
+  
+  .column img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: -203px auto;
+  }
+  
+  .column form {
+    max-width: 400px;
+    margin: -38px auto;
+  }
+  
+  .column input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  .column button {
+    background-color: #1755CC;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .column button:hover {
+    background-color: #1755CC;
+  }
+  .f1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  .f2{
+      font-family: "Montserrat", sans-serif;
+      font-size: 15px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center;
+  
+  }
+  .p11{
+    text-align: left;
+  }
+  /* Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .column {
+      flex: 100%;
+    }
+    .column form{
+      margin-top: 73%;
+    }
+    .column img{
+      margin-top: -48%;
+    }
+    .hd{
+      margin-left: 8%;
+    }
+    .p2{
+      margin-left: -2%;
+    }
+  }
+  
+  /* App.css */
+  /* Your existing styles */
+  
+  /* Responsive Styles for Tablet View */
+  @media screen and (max-width: 768px) {
+      .column {
+        flex: 100%;
+      }
+    .f1{
+      margin-left: -15px;
+    }
+    #lo{
+      width: 80%;
+    }
+    #tt{
+      margin-left: -26%;
+    }
+    .f2{
+      margin-left: -18px;
+    }
+      .column form {
+        margin-top: 73%; /* Adjust as needed */
+        width: 115%;
+        margin-left: -11%;
+      }
+    
+      .column img {
+        margin-top: -58%; /* Adjust as needed */
+      }
+    
+      .hd {
+        margin-left: 5%; /* Adjust as needed */
+      }
+    
+      .p2 {
+        margin-left: -2%;
+      }
+      .pp{
+        font-size: xx-small;
+        margin-top: -53px;
+        width: 93%;
+      }
+      .vvvvv{
+        margin-left: 0%;
+        width: 100%;
+      }
+      .p2{
+        margin-left: 8px;
+        width: 92%;
+        white-space: nowrap;
+        font-size: larger;
+      }
+      .p11{
+        margin-left: 3x;
+        font-size: smaller;
+        text-align: left;
+      }
+    }
+    @media screen and (max-width: 379px){
+#cdr{
+  margin-left: -66px;
+  height: 164px;
+}
+.ca{
+  font-size: 5px;
+}
+    }
+
+    @media screen and (max-width: 360px){
+      #cdr{
+        margin-left: -57px;
+        height: 164px;
+      }
+    }

@@ -1,0 +1,23 @@
+.ft{
+    white-space: nowrap;
+}
+#yp{
+    margin-left: 5%;
+}
+@media screen and (max-width: 768px) {
+    .ft{
+        font-size: x-small;
+    }
+    #yp{
+        white-space: nowrap;
+        font-size: x-large;
+        margin-left: 2px;
+    }
+}
+@media screen and (max-width: 360px){
+    #yp{
+        
+        font-size:larger;
+        margin-left: 4px;
+    }
+  }

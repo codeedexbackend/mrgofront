@@ -1,0 +1,103 @@
+.containerl {
+   
+    border: 1px solid black;
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.headerpp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.ship-to {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.ship-to address {
+    line-height: 1.2;
+    font-style: normal;
+}
+.details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.details .left,
+.details .right {
+    width: 48%;
+}
+.barcode {
+    text-align: center;
+    margin-top: 10px;
+}
+.order-details {
+    font-size: 0.8em;
+    margin-top: 10px;
+}
+.order-details table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.order-details th,
+.order-details td {
+    border: 1px solid black;
+    padding: 3px;
+    text-align: left;
+}
+.disclaimer {
+    font-size: 0.8em;
+    margin-top: 10px;
+    border: 1px solid black; /* Adjust border color and size */
+    width: 475px;
+    height: 70px;
+    background-color: white; /* Set background color to white */
+}
+.powered-by {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 0.8em;
+}
+
+/* Label.css */
+
+/* Style for the container of the barcode */
+.barcode-container {
+    display: flex;
+    justify-content: center;
+    width: 65%;
+  }
+  /* Increase specificity */
+.barcode-container .barcode {
+    width: 200px;
+    height: 50px;
+    background-color: white;
+  }
+  
+  /* Style for the barcode itself */
+  .barcode {
+    /* Customize width, height, color, etc. */
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    /* Add more styling properties as desired */
+  }
+  
+  .barcode svg {
+    width: 200px; /* Adjust this value as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+/* Label.css */
+
+/* Increase specificity to override default styles */
+.barcode-container .barcode svg {
+    width: 100%; /* Adjust this value as needed */
+    height: 160%; /* Maintain aspect ratio */
+  }
+  .hidden {
+    display: none;
+  }
+  

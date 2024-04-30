@@ -1,0 +1,14 @@
+.form-gap {
+    padding-top: 70px;
+    text-align: center; /* Center align all items */
+}
+.form-container {
+    display: inline-block; /* Center the form container */
+}
+@media (max-width: 768px) {
+    .form-gap {
+        padding-top: 50px; /* Adjust padding for smaller screens */
+    }
+}
+
+ 

@@ -1,0 +1,107 @@
+/* Login.css */
+
+/* Default styles for larger screens */
+.main-div {
+    background-color: lightblue;
+  
+  }
+  
+  .logindiv {
+    height: 500px;
+    width: 500px;
+    background-color: white;
+    margin-top: -25px;
+    border-radius: 10px;
+    /* Add other styles as needed */
+  }
+  
+  h4,
+  p {
+    font-family: "Montserrat", sans-serif;
+  }
+  #odf{
+    margin-left: 12%;
+    height: 8%;
+    margin-top: 30px;
+   
+  }
+  /* Media query for tablets and smaller screens */
+  @media (max-width: 768px) {
+    .logindiv {
+      width: 136%;
+      max-width: 600px;
+      margin: 0 auto;
+      margin-top: 20px;
+      height: 100%;
+      margin-left: -19%;
+    }
+  }
+  
+  /* Media query for mobile devices */
+  @media (max-width: 576px) {
+    .logindiv {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+    .image1{
+        margin-left: 150px;
+        margin-top: 50px;
+    }
+  
+    h1 {
+      font-size: 24px;
+    }
+  
+    h2 {
+      font-size: 18px;
+    }
+  
+    h4 {
+      font-size: 14px;
+      padding-top: 20px;
+    }
+    Form.Control{
+        margin-left: 20px;
+    }
+  
+    /* Make background color responsive */
+    .main-div {
+      background-color: lightblue;
+      width: 900px;
+      height: 1550px;
+    }
+    .mrgo{
+        margin-left: 350px;
+    }
+    .welcome{
+        margin-left: 300px;
+    }
+  }
+  
+
+  .ToastContainer{
+    z-index: 1;
+  }
+
+  .forgot-password-link {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .forgot-password-link a {
+    color: #007bff; /* Bootstrap primary color */
+    text-decoration: none;
+  }
+  
+  .forgot-password-link a:hover {
+    text-decoration: underline;
+  }
+  .forgetdiv {
+    height: 500px;
+    width: 75%;
+    background-color: white;
+    margin-top: -25px;
+    border-radius: 10px;
+}
