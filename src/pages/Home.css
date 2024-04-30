@@ -1,0 +1,373 @@
+.over {
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgb(106, 106, 237), white, white, white);
+    width: 100%;
+
+    /* Adding animation */
+    animation: gradientAnimation 5s infinite;
+    margin-top: -5%;
+}
+.ttt{
+    width: 88%;
+}
+#gt{
+    margin-left: 14px;
+}
+#hy{
+    font-size: 15px;
+}
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.hh {
+    white-space: nowrap;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    line-height: 78.02px;
+    size: 64px;
+    margin-top: 24%;
+}
+
+.tr {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+#btt{
+    margin-left: 54px;
+}
+
+.tr2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: left;
+    padding-top: 10px;
+}
+
+.yy {
+    border: 1px solid rgb(255, 250, 250);
+    border-radius: 15px;
+    box-shadow: 10px 10px 10px 10px rgb(188, 189, 189) inset;
+}
+#nj{
+    margin-top: 5%;
+    margin-left: 47px;
+}
+
+#hhh {
+    color: #1755cc;
+    margin-left: -13px;
+}
+
+#hhv {
+    color: black;
+}
+
+#bbbbc {
+    background-color: #eeeeee;
+    margin-left: 1%;
+    height: 46px;
+    margin-top: -7px;
+    width: 170%;
+}
+#bbbb {
+    background-color: #eeeeee;
+}
+
+.b {
+    background-image: url('https://i.postimg.cc/SQ5Hh2rF/output-onlinepngtools.png');
+    width: 100%;
+    height: 631.75px;
+    background-repeat: no-repeat;
+}
+
+.img78 {
+    margin-top: 242px;
+    margin-right: 7%;
+}
+
+p {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    line-height: 24.38px;
+    color: black;
+    margin-top: 10%;
+    text-align: left;
+}
+
+#tt {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+    width: 75%;
+}
+
+#btt {
+    margin-left: 17%;
+    margin-top: 10%;
+}
+
+.img2 {
+    display: none;
+}
+
+@media screen and (max-width: 768px) and (min-width: 395px) {
+    p {
+        margin-right: 40px;
+    }
+    #hy{
+        font-size: 13px;
+    }
+   #btt{
+    white-space: nowrap;
+   }
+   .tr{
+    width: 100%;
+   }
+   #gt{
+    margin-left: 1px;
+}
+.hh{
+    margin-top: 50%;
+    line-height: normal;
+}
+    .img2 {
+        font-size: smaller;
+        display: block;
+        margin-right: 3%;
+        margin-top: -30%;
+    }
+    #loki{
+        margin-top: -44%;
+    }
+    .ttt{
+        width: 67%;
+    }
+    .yy {
+        margin-right: 10%;
+        width: 85%;
+    }
+    #nj{
+       
+        margin-left: 34px;
+    }
+    #bbbbc{
+        width: 241%;
+        margin-left: -27%;
+        margin-right: 38px;
+        margin-left: -23px;
+        height: 48px;
+    }
+    #bbbb{
+        width: 100%;
+        margin-left: -27%;
+        margin-right: 38px;
+        margin-left: -23px;
+        height: 48px;
+    }
+
+    .ttt {
+        margin-top: 1px;
+        white-space: nowrap;
+        margin-left: 9%;
+        font-size: unset;
+        width: 100%;
+    }
+
+  
+
+    .resp {
+        margin-left: 4%;
+    }
+
+    #mn {
+        display: none;
+    }
+    #hhv{
+        text-align: center;
+        margin-left: -6%;
+    }
+    #hhh{
+margin-left: -16px;
+    }
+
+    #nj{
+        margin-top: 0rem;
+    }
+}
+@media (max-width: 394px) {
+    #bbbbc{
+        width: 300%;
+        margin-left: -27%;
+        margin-right: 38px;
+        margin-left: -23px;
+        height: 48px;
+    }
+     .ttt {
+        margin-top: -1%;
+        white-space: nowrap;
+        margin-left: -3;
+        font-size: unset;
+        width: 76%;
+    }
+    p {
+        margin-right: 40px;
+    }
+    #hy{
+        font-size: 12px;
+    }
+   #btt{
+    white-space: nowrap;
+   }
+   .tr{
+    width: 100%;
+   }
+   #gt{
+    margin-left: 1px;
+}
+.hh{
+    margin-top: 50%;
+    line-height: normal;
+}
+    .img2 {
+        font-size: smaller;
+        display: block;
+        margin-right: 3%;
+        margin-top: -30%;
+    }
+    #loki{
+        margin-top: -56%;
+    }
+    .ttt{
+        width: 92%;
+        margin-left: 30%;
+    }
+    .yy {
+        margin-right: 10%;
+        width: 85%;
+    }
+    #nj{
+       
+        margin-left: 34px;
+    }
+    
+    #bbbb{
+        width: 100%;
+        margin-left: -27%;
+        margin-right: 38px;
+        margin-left: -23px;
+        height: 48px;
+    }
+
+    
+
+  
+
+    .resp {
+        margin-left: 4%;
+    }
+
+    #mn {
+        display: none;
+    }
+    #hhv{
+        text-align: center;
+        margin-left: -6%;
+    }
+    #hhh{
+margin-left: -16px;
+    }
+
+    #nj{
+        margin-top: 0rem;
+    }
+
+}
+
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media screen and (max-width: 360px){
+    #bbbbc{
+        width: 340%;
+        margin-left: -43px;
+    }
+        .ttt{
+            margin-top: 0%;
+        }
+        #hy{
+            font-size: 12px;
+        }
+        #hhv {
+            margin-left: -15%;
+            text-align: center;
+        }
+        
+  }
+
+  .alert-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .alert {
+    display: flex;
+    align-items: center;
+  }
+  
+  .alert-message {
+    margin: 0;
+    flex: 1;
+    color: #721c24;
+  }
+  
+  .close-button {
+    background-color: transparent;
+    border: none;
+    color: #721c24;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .close-button:hover {
+    background-color: #f5c6cb;
+  }
+  

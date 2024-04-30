@@ -1,0 +1,291 @@
+/* Track.css */
+
+/* Add media query for smaller screens */
+@media screen and (max-width: 768px) {
+    /* Adjust font sizes for smaller screens */
+    .shipment-details table th,
+    .shipment-details table td,
+    .receiver-details table th,
+    .receiver-details table td {
+      font-size: 0.8rem; /* Adjust as needed */
+    }
+  
+    /* Make table cells wrap content on smaller screens */
+    .shipment-details table td,
+    .shipment-details table th,
+    .receiver-details table td,
+    .receiver-details table th {
+      word-wrap: break-word;
+      white-space: normal;
+    }
+  
+    /* Adjust margins for smaller screens */
+    .trackorder {
+      margin-left: 2px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    /* Hide step icons before and after on extra small screens */
+    .flex-sm-nowrap .step .step-icon-wrap::before,
+    .flex-sm-nowrap .step .step-icon-wrap::after {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    /* Hide step icons before and after on small screens */
+    .flex-md-nowrap .step .step-icon-wrap::before,
+    .flex-md-nowrap .step .step-icon-wrap::after {
+      display: none;
+    }
+  
+    /* Adjust margins for small screens */
+    .trackorder {
+      margin-left: 2px;
+    }
+  
+    /* Adjust layout for specific class */
+    .ca {  
+      margin-left: -17px;
+      width: 142%;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    /* Hide step icons before and after on medium screens */
+    .flex-lg-nowrap .step .step-icon-wrap::before,
+    .flex-lg-nowrap .step .step-icon-wrap::after {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    /* Hide step icons before and after on large screens */
+    .flex-xl-nowrap .step .step-icon-wrap::before,
+    .flex-xl-nowrap .step .step-icon-wrap::after {
+      display: none;
+    }
+  }
+  
+  /* Other styles remain unchanged */
+  /* Progress bar */
+  .progress-bar {
+    position: relative;
+    height: 10px;
+    background-color: #47c5ff;
+    width: 100%; /* Adjust width as needed */
+    margin-bottom: 20px; /* Adjust margin as needed */
+  }
+  
+  .progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #0da9ef; /* Change the color as needed */
+    transition: width 5s ease; /* Change the transition duration */
+  }
+  
+  /* Steps */
+  .steps .step {
+    display: block;
+    width: 100%;
+    margin-bottom: 35px;
+    text-align: center;
+  }
+  
+  .steps .step .step-icon-wrap {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 80px;
+    text-align: center;
+  }
+  
+  .steps .step .step-icon-wrap::before,
+  .steps .step .step-icon-wrap::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 50%;
+    height: 10px;
+    margin-top: -1px;
+    background-color: #d9f3ff;
+    content: '';
+    z-index: 1;
+    transition: background-color 0.3s ease; /* Add transition for smooth color change */
+  }
+  
+  .steps .step.completed .step-icon-wrap::before,
+  .steps .step.completed .step-icon-wrap::after {
+    background-color: #0da9ef; /* Set blue color for completed steps */
+  }
+  
+  .steps .step .step-icon-wrap::before {
+    left: 0;
+  }
+  
+  .steps .step .step-icon-wrap::after {
+    right: 0;
+  }
+  
+  .steps .step .step-icon {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #e1e7ec;
+    border-radius: 50%;
+    border-color: #0da9ef;
+    background-color: #0da9ef;
+    color: #fff;
+    font-size: 38px;
+    line-height: 81px;
+    z-index: 5;
+  }
+  
+  .steps .step .step-title {
+    margin-top: 16px;
+    margin-bottom: 0;
+    color: #606975;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .steps .step:first-child .step-icon-wrap::before {
+    display: none;
+  }
+  
+  .steps .step:last-child .step-icon-wrap::after {
+    display: none;
+  }
+  
+  .bg-faded, .bg-secondary {
+    background-color: #f5f5f5 !important;
+  }
+  
+  #v {
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  
+  #vv {
+    font-family: Montserrat;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  
+  .vvvv {
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-left: 18px;
+  }
+  
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .lds-ring,
+  .lds-ring div {
+    box-sizing: border-box;
+  }
+  
+  .lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid currentColor;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: currentColor transparent transparent transparent;
+  }
+  
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+  .search-container {
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 200%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.search-button {
+    width: 200%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #8eeeff;
+}
+
+.search-button:hover {
+    background-color: #c1dcf9;
+}

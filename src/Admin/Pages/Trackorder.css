@@ -1,0 +1,20 @@
+/* Add this CSS to limit the width of elements */
+.App {
+    max-width: 100%; /* Adjust as needed */
+    overflow-x: hidden; /* Hide horizontal overflow */
+  }
+  
+  .table {
+    max-width: 100%;
+  }
+  
+  .card {
+    max-width: 100%;
+  }
+  
+  /* Add this CSS to remove padding and margin from body */
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  

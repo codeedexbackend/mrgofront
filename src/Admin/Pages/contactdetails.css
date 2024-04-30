@@ -1,0 +1,49 @@
+/* AContact.css */
+.contact-details-container {
+    padding: 20px;
+  }
+  
+  .contact-details-background {
+    background-color: #f0f0f0; /* Change this to your desired background color */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .contact-detail-item {
+    margin-bottom: 10px;
+  }
+  
+  .contact-detail-item strong {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  /* contactdetails.css */
+.contact-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.contact-details-background {
+  background-color: #e9ffef;
+  padding: 20px;
+  width: 75%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-detail-item {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.contact-icon {
+  margin-right: 10px;
+}
+
+.contact-detail-label {
+  font-weight: bold;
+  margin-right: 5px;
+}

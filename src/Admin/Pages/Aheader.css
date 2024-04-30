@@ -1,0 +1,83 @@
+/* .navborder{
+    border-radius: 50%;
+    border: 1px solid red;
+} */
+.Navbar{
+    background-color: rgb(156, 232, 255);
+    
+}
+
+.navbar {
+    background-color: rgb(156, 232, 255);
+
+}
+.bgbg{
+    font-size: 13px;
+    margin-top: 51%;
+}
+.ndd{
+  color:black;
+  font-size: 13px;
+}
+.dropdown-toggle::after {
+    display: none;
+    font-size: 1px;
+}
+.adminhome{
+    
+    font-size: 13px;
+
+
+}
+.NavDropdown.Item{
+    font-size: 13px;
+}
+.dropdown-item {
+    font-size: 13px;
+}
+.msg{
+    margin-top: -8px;
+}
+@media screen and (min-width: 576px) and (max-width: 1111px) {
+    .ndd{
+        
+        font-size: 7px;
+        margin: -2px;
+      }
+      .navbar-toggler {
+        display: block; /* Show the toggler within the specified screen width range */
+      }
+      .adminhome{
+    
+        font-size: 7px;
+    
+    
+    }
+    .username{
+        font-size: 7px;
+    }
+    .navbaricons{
+        font-size: 7px;
+        margin-top: 13px;
+    }
+    .naviv{
+        margin-top: -9px;
+    }
+}
+.msgg{
+    display: none;
+}
+.ntf{
+    margin-left: 73%;
+}
+@media (max-width: 576px) {
+    .msg{
+        margin-top: -29%;
+    }
+    .msgg{
+        display: block;
+    }
+    .ntf{
+        margin-top: -29%;
+    }
+}
