@@ -1,6 +1,6 @@
 // ProductList.js
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import "./Product.css";
 import AHeader from './AHeader';
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,7 +27,17 @@ function ProductList() {
   
     fetchData();
   }, [userId]); // Trigger the effect when the user parameter changes
-  
+
+  // Sort invoice numbers based on booking dates in descending order
+  const sortedInvoiceNumbers = useMemo(() => {
+    return invoiceData.invoice_numbers.sort((a, b) => {
+      const bookingDateA = invoiceData.booking_dates[a];
+      const bookingDateB = invoiceData.booking_dates[b];
+      if (!bookingDateA || !bookingDateB) return 0;
+      return new Date(bookingDateB[0]) - new Date(bookingDateA[0]);
+    });
+  }, [invoiceData]);
+
   return (
     <div>
       <AHeader />
@@ -47,7 +57,7 @@ function ProductList() {
             <div className="col col-2">INVOICE No</div>
             <div className="col col-2">Booking Date</div>
           </li>
-          {invoiceData.invoice_numbers && invoiceData.invoice_numbers.map((invoice, index) => {
+          {sortedInvoiceNumbers.map((invoice, index) => {
             if (!invoice) return null; // Skip rendering if invoice is null
             return (
               <li className="table-row" key={index}>
@@ -69,5 +79,7 @@ function ProductList() {
     </div>
   );
 }
+
+
 
 export default ProductList;

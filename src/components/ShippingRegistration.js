@@ -189,7 +189,7 @@ function ShippingRegistration() {
       const userID = getUserId();
       const config = {
         method: "post",
-        url: "http://15.207.113.102/api/ShippingRegView/",
+        url: "https://api.mrgo.in/api/ShippingRegView/",
         headers: {
           "Content-Type": "application/json",
         },

@@ -58,3 +58,8 @@
         margin-top: -4%;
     }
 }
+@media (min-width: 1142px) {
+    .form-container{
+        margin-left: 60%;
+    }
+}

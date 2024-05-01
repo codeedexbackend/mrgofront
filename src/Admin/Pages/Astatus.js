@@ -21,7 +21,7 @@ function Astatus() {
  
   const handleStatusSelect = async () => {
     try {
-      const response = await fetch('http://15.207.113.102/api/update-tracking-status/', {
+      const response = await fetch('https://api.mrgo.in/api/update-tracking-status/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
