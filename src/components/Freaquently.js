@@ -5,7 +5,7 @@ import './freq.css'
 function Freaquently() {
   return (
     
-    <div style={{marginTop:"55px"}}>
+    <div style={{marginTop:"12%"}}>
                 <h1 style={{ textAlign: "left", padding: "20px"  }} id='yp'><b>Frequently Asked Questions</b></h1>
               <p style={{ fontSize: "16px",marginTop:"-20px",fontWeight:"500",textAlign:"left" }} className='p-4 container p11' ><b >Uncover essential information and solutions in our Frequently Asked Questions (FAQ) section. Get quick and comprehensive responses to common queries, ensuring a seamless experience with our courier service.</b></p>
     

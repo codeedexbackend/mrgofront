@@ -162,3 +162,9 @@ letter-spacing: 0em;
       margin-left: -4%;}
 
   }
+
+  @media (min-width: 1760px) {
+    #cards {
+      margin-left: 17%;
+  }
+  }

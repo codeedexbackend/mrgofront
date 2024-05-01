@@ -221,3 +221,21 @@
         height: 164px;
       }
     }
+
+    #whr{
+      margin-left: 5%;
+    }
+    @media screen and (min-width: 1760px){
+      #whr{
+        margin-left: 13%;
+      }
+    }
+
+    #whru{
+      margin-left: 5%;
+    }
+    @media screen and (min-width: 1760px){
+      #whru{
+        margin-left: 13%;
+      }
+    }

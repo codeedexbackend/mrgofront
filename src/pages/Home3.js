@@ -21,7 +21,7 @@ function Home3() {
   return (
     <div>
       <div data-aos="fade-up" className="mt-5 hd">
-        <p className="text-left p2" style={{marginLeft:'5%'}}>What people say about Mr. Go</p>
+        <p className="text-left p2" id="whr">What people say about Mr. Go</p>
         <p className="container   p11 text-left" style={{width:'100%'}}>
           Discover why our customers are singing praises about our courier
           service. From swift and secure deliveries to hassle-free returns and
@@ -74,7 +74,7 @@ function Home3() {
       <hr />
 
       <div data-aos="fade-up" className="mt-3">
-        <p className=" p2" style={{textAlign:'left',marginLeft:'5%'}}>Calculate your Cost</p>
+        <p className=" p2" style={{textAlign:'left'}} id="whru">Calculate your Cost</p>
         <p className="container   p11" style={{width:'90%',textAlign:'left'}}>
           Navigate through our straightforward pricing structure with our
           easy-to-use service cost calculator. No hidden fees – just
