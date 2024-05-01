@@ -10,6 +10,7 @@ function Footer() {
         <img id='foo' style={{marginTop:'-11%',marginRight:'90%'}} src="https://i.postimg.cc/7ZDTGbFg/auto-group-2qzw.png" 
               width="50px" 
               height="52px" 
+              
               className="d-inline-block align-top" 
               alt="React Bootstrap logo"  /> 
               <p className='mns' id='mnss' style={{marginTop:'-32px'}} >r. Go</p> 

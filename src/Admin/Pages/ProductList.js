@@ -12,7 +12,7 @@ function ProductList() {
     invoice_numbers: [],
     booking_dates: {}
   });
-  const userId = JSON.parse(sessionStorage.getItem("userId")) || [];
+  const userId = useMemo(() => JSON.parse(sessionStorage.getItem("userId")) || [], []);
 
   useEffect(() => {
     const fetchData = async () => {

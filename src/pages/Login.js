@@ -89,13 +89,13 @@ const Login = () => {
             <div className='imagediv'>
               <h1 className='mrgo' style={{ color: "red" }}><b>Mr.Go</b></h1>
               <h2 className='welcome'>Welcome Back !</h2>
-              <img className="image1" src="https://i.postimg.cc/HLGXfySY/sign-removebg-preview.png" alt="" />
+              <img className="image1" src="https://i.postimg.cc/HLGXfySY/sign-removebg-preview.png" alt="wtr" />
             </div>
           </Col>
           <Col lg={6} className="p-5 text-white my-5" id="d1">
             <div className='logindiv'>
               <h4 style={{ fontSize: "18px", paddingTop: "30px" }} className="text-center text-black">Get Started With a Free Account</h4>
-              <button className='btn btn-outline-dark container w-75' id='odf'> <img style={{ height: "25px", width: "25px", marginTop: "-8px" }} src="https://i.postimg.cc/nV59n3V9/download-removebg-preview.png" alt="" /> <b style={{ marginTop: "10px" }}>Google</b> </button>
+              <button className='btn btn-outline-dark container w-75' id='odf'> <img style={{ height: "25px", width: "25px", marginTop: "-8px" }} src="https://i.postimg.cc/nV59n3V9/download-removebg-preview.png" alt="et" /> <b style={{ marginTop: "10px" }}>Google</b> </button>
               <p className='text-black container w-75 mt-3' style={{ textAlign: 'center' }}>OR</p>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="" controlId="exampleInputEmail1">

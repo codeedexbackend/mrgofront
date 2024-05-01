@@ -62,7 +62,7 @@ function Home() {
                     marginTop:"19%"
                   }}
                   src={hr}
-                  alt=""
+                  alt="etr"
                 />
               </div>
             </Element>
@@ -104,7 +104,7 @@ function Home() {
                 id="mn"
                 style={{ width: "100%", height: "532px", marginTop: "-30px" }}
                 src="https://i.postimg.cc/4dk43fVB/52938d0635e18aed5998dd7e6642f0db.png"
-                alt=""
+                alt="rtw"
               />
             </Col>
           </Row>
