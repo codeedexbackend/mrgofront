@@ -46,7 +46,7 @@ function Ecommerce() {
 
             </Link>                    </div>
           <div className='col-md-6'>
-            <img className='img image123 expi' src={ecom} alt="" />
+            <img className='img image123 expi' src={ecom} alt="ert" />
           </div>
         </div>
       </div>

@@ -6,26 +6,26 @@ import "./Booking.css";
 import AHeader from "./AHeader";
 import Form from "react-bootstrap/Form";
 import { Col, Row } from "react-bootstrap";
-import { adminbooking } from "../../service/allApi";
+// import { adminbooking } from "../../service/allApi";
 import { BASE_URL } from "../../service/baseUrl";
 import axios from "axios";
 
-function CustomAlert({ message, onClose }) {
-  return (
-    <div
-      className="alert alert-danger alert-dismissible fade show"
-      role="alert"
-    >
-      <strong>Error:</strong> {message}
-      <button
-        type="button"
-        className="btn-close"
-        aria-label="Close"
-        onClick={onClose}
-      ></button>
-    </div>
-  );
-}
+// function CustomAlert({ message, onClose }) {
+//   return (
+//     <div
+//       className="alert alert-danger alert-dismissible fade show"
+//       role="alert"
+//     >
+//       <strong>Error:</strong> {message}
+//       <button
+//         type="button"
+//         className="btn-close"
+//         aria-label="Close"
+//         onClick={onClose}
+//       ></button>
+//     </div>
+//   );
+// }
 function Booking() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -77,22 +77,22 @@ function Booking() {
       setFormData({ ...formData, [id]: parsedValue });
     }
   };
-  const handleStepSelect = (selectedStep) => {
-    setStepNumber(selectedStep);
-    // Retrieve existing form data from local storage
-    const storedFormData = JSON.parse(localStorage.getItem("formData")) || [];
-    // Ensure storedFormData is an array
-    const updatedFormData = Array.isArray(storedFormData)
-      ? [...storedFormData]
-      : [];
-    // Ensure that all form data up to the selected step is stored in local storage
-    for (let i = updatedFormData.length + 1; i <= selectedStep; i++) {
-      updatedFormData.push(formData);
-    }
-    // Update the form data and step number
-    setFormData(updatedFormData[selectedStep - 1]);
-    setStepNumber(selectedStep);
-  };
+  // const handleStepSelect = (selectedStep) => {
+  //   setStepNumber(selectedStep);
+  //   // Retrieve existing form data from local storage
+  //   const storedFormData = JSON.parse(localStorage.getItem("formData")) || [];
+  //   // Ensure storedFormData is an array
+  //   const updatedFormData = Array.isArray(storedFormData)
+  //     ? [...storedFormData]
+  //     : [];
+  //   // Ensure that all form data up to the selected step is stored in local storage
+  //   for (let i = updatedFormData.length + 1; i <= selectedStep; i++) {
+  //     updatedFormData.push(formData);
+  //   }
+  //   // Update the form data and step number
+  //   setFormData(updatedFormData[selectedStep - 1]);
+  //   setStepNumber(selectedStep);
+  // };
   const [dropdownOptions, setDropdownOptions] = useState([1]);
   const handleNextClick = () => {
     // Check if all fields are filled

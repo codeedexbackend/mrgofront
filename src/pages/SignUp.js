@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import "./SignUp.css";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { registerApi } from "../service/allApi";
 import { toast } from "react-toast";
 
@@ -132,18 +131,18 @@ const SignUp = () => {
               <img
                 className="partners"
                 src="https://i.postimg.cc/k5YPRjxD/Rectangle-60.png"
-                alt=""
+                alt="dfg"
               />{" "}
               <img
                 className="partners1"
                 src="https://i.postimg.cc/8C9nVxRd/Rectangle-61.png"
-                alt=""
+                alt="fdg"
               />
               <img
                 className="image12 "
                 id="imggv"
                 src="https://i.postimg.cc/HLGXfySY/sign-removebg-preview.png"
-                alt=""
+                alt="dfg"
               />
             </div>
           </Col>
@@ -163,7 +162,7 @@ const SignUp = () => {
                 <img
                   style={{ height: "25px", width: "25px", marginTop: "-8px" }}
                   src="https://i.postimg.cc/nV59n3V9/download-removebg-preview.png"
-                  alt=""
+                  alt="ett"
                 />{" "}
                 <b style={{ marginTop: "10px" }}>Google</b>{" "}
               </button>

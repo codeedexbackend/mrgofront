@@ -16,7 +16,7 @@ function Aboutus() {
         <div>
             <Header></Header>
             <div>
-                <img id='abimage' src="https://i.postimg.cc/5yRYtc3g/Rectangle-56.png" alt="" />
+                <img id='abimage' src="https://i.postimg.cc/5yRYtc3g/Rectangle-56.png"  alt="Card 1" />
             </div>
             <div style={{ backgroundColor: "white" }}>
                 <div>
@@ -34,7 +34,7 @@ function Aboutus() {
             <div className='partnerss' style={{ backgroundColor: "lightgray", height: "260px" }}>
                 <div className='container w-75'>
                     <h1 style={{ fontSize:"36px" ,textAlign: "center", padding: "20px" }}><b>Meet Our Partners</b></h1>
-                    <img className='partners pt'  src="https://i.postimg.cc/sDsFKnp6/Rectangle-58.png" alt="" />
+                    <img className='partners pt'  src="https://i.postimg.cc/sDsFKnp6/Rectangle-58.png" alt="ert" />
                     <img className='partners1 pt pt2'  src="https://i.postimg.cc/Wz7HQvM9/Rectangle-59.png" alt="" />
                 </div>
             </div>
