@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link as Element, scroller } from "react-scroll";
+import { Link as Element } from "react-scroll";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import hr from "../Assets/Rectangle 112.png";
 

@@ -231,7 +231,7 @@ export const adminbooking = async (formData) => {
           Content_Type: formData.Content_Type,
           Number_of_box: formData.Number_of_box,
           Declared_value: formData.Declared_value,
-          user: formData.user,
+         
       };
       // Make the POST request to the server
       const response = await axios.post(`${BASE_URL}/api/ShippingRegView/`, requestData);
