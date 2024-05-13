@@ -20,10 +20,10 @@ function Footer() {
       </div> 
       <div className="column"> 
        <p className='fc2' id='fcv' style={{color:"red"}}><b id='jk'>Services</b></p> 
-        <p className='fc21'>Courier Service </p> 
-        <p className='fc21'>Food Courier</p> 
-        <p className='fc21'>Whole Sales Courier</p> 
-        <p className='fc21'>E-device Courier</p> 
+        <p className='fc21'>E-Commerce Shipping </p> 
+        <p className='fc21'>Courier & Cargo Service</p> 
+        <p className='fc21'>Domestic & International Service</p> 
+        <p className='fc21'>Packaging</p> 
  
       </div> 
       <div className="column"> 
@@ -36,12 +36,12 @@ function Footer() {
     <p className='fc21' id='g2'>About</p> 
    
 </Link>      
-<Link to={''} style={{textDecoration:"none"}}> 
-     <p className='fc21' id='g3'>Package & Pricing</p> 
+<Link to={'/smartbox'} style={{textDecoration:"none"}}> 
+     <p className='fc21' id='g3'>Services</p> 
    
 </Link>   
-<Link to={'/'} style={{textDecoration:"none"}}> 
-        <p className='fc21' id='g4'>Orders</p> 
+<Link to={'/contactus'} style={{textDecoration:"none"}}> 
+        <p className='fc21' id='g4'>Contact Us</p> 
    
 </Link> 
       </div> 
@@ -49,8 +49,8 @@ function Footer() {
       <p className='fc2' style={{color:"red"}}><b id='ji'>Contact</b></p> 
         <p className='fc21'>Kochi, C port Airport Road 
 Ernamkulam </p> 
-        <p className='fc21'>mr.go.couriers.com</p> 
-        <p className='fc21'>+91 6583376363</p> 
+        <p className='fc21'><a style={{textDecoration:'none',color:'white'}} href='https://mrgo.in/'>mrgo.in</a></p> 
+        <p className='fc21'>+91 9846976956</p> 
       </div> 
     </footer> 
     </div> 

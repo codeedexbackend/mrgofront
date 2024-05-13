@@ -125,6 +125,7 @@ p {
 #btt {
     margin-left: 17%;
     margin-top: 10%;
+    border-radius: 25px;
 }
 
 .img2 {
@@ -148,18 +149,15 @@ p {
     margin-left: 1px;
 }
 .hh{
-    margin-top: 50%;
+    margin-top: 6%;
     line-height: normal;
 }
     .img2 {
         font-size: smaller;
         display: block;
         margin-right: 3%;
-        margin-top: -30%;
     }
-    #loki{
-        margin-top: -44%;
-    }
+   
     .ttt{
         width: 67%;
     }
@@ -215,6 +213,11 @@ margin-left: -16px;
         margin-top: 0rem;
     }
 }
+
+
+
+
+
 @media (max-width: 394px) {
     #bbbbc{
         width: 300%;
@@ -246,18 +249,20 @@ margin-left: -16px;
     margin-left: 1px;
 }
 .hh{
-    margin-top: 50%;
+    margin-top: 6%;
     line-height: normal;
 }
-    .img2 {
-        font-size: smaller;
-        display: block;
-        margin-right: 3%;
-        margin-top: -30%;
-    }
-    #loki{
-        margin-top: -56%;
-    }
+.img2 {
+    font-size: smaller;
+    display: block;
+    margin-right: 3%;
+    margin-top: -20%;
+}
+
+
+
+   
+   
     .ttt{
         width: 92%;
         margin-left: 30%;
@@ -265,6 +270,7 @@ margin-left: -16px;
     .yy {
         margin-right: 10%;
         width: 85%;
+        margin-top: 0%;
     }
     #nj{
        
@@ -278,7 +284,7 @@ margin-left: -16px;
         margin-left: -23px;
         height: 48px;
     }
-
+ 
     
 
   
@@ -292,7 +298,7 @@ margin-left: -16px;
     }
     #hhv{
         text-align: center;
-        margin-left: -6%;
+        margin-left: -13%;
     }
     #hhh{
 margin-left: -16px;
@@ -300,9 +306,14 @@ margin-left: -16px;
 
     #nj{
         margin-top: 0rem;
-    }
+    } 
 
 }
+
+
+
+
+
 
 
 .fade-in {
@@ -315,6 +326,7 @@ margin-left: -16px;
     opacity: 1;
     transform: translateY(0);
 }
+
 @media screen and (max-width: 360px){
     #bbbbc{
         width: 340%;
@@ -371,3 +383,38 @@ margin-left: -16px;
     background-color: #f5c6cb;
   }
   
+  @media (min-width: 1500px) {
+    #mn{
+        margin-left: 70%;
+    }
+  }
+  @media screen and (max-width: 768px) and (min-width: 539px) {
+    #lokiok{
+        margin-top: 0%;
+    }
+  }
+
+
+
+  #bttt{
+    margin-left: 167%;
+    width: 26%;
+    border-radius: 5px;
+    margin-top: 13px;
+    background-color: black;
+    white-space: nowrap;
+  }
+  @media screen and (max-width: 768px) and (min-width: 350px) {
+    #bttt{
+        font-size: 10px;
+        width: 69%;
+        white-space: nowrap;
+    }
+  }
+
+  @media screen and (max-width: 538px) and (min-width: 395px) {
+    .img2{
+        margin-top: -8%;
+    }
+  }
+

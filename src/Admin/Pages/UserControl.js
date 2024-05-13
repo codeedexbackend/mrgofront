@@ -329,6 +329,7 @@ const currentItems = filteredEmployees.slice(indexOfFirstItem, indexOfLastItem);
             </div>
           </div>
         </div>
+       
 
         {/* Add Employee Modal */}
         <div
@@ -653,7 +654,9 @@ const currentItems = filteredEmployees.slice(indexOfFirstItem, indexOfLastItem);
           </div>
         </div>
       )}
+       <Afooter></Afooter>
        <ToastContainer />
+
     </div>
   );
 };

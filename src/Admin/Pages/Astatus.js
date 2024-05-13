@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import AHeader from "./AHeader";
 import { Modal, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
+import { BASE_URL } from "../../service/baseUrl";
+
 
 function Astatus() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +23,7 @@ function Astatus() {
  
   const handleStatusSelect = async () => {
     try {
-      const response = await fetch('https://api.mrgo.in/api/update-tracking-status/', {
+      const response = await fetch(`${BASE_URL}/api/update-tracking-status/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

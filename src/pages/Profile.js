@@ -3,7 +3,6 @@ import "./Profile.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { profileviewApi, userProfileEditApi } from "../service/allApi"; // Import the edit API
-import ShippingRegistration from "../components/ShippingRegistration";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";function Profile() {
@@ -299,6 +298,7 @@ import "react-toastify/dist/ReactToastify.css";function Profile() {
                         type="button"
                         className="btn btn-primary"
                         onClick={handleUpdateProfile}
+                        id="updatee"
                       >
                         Update
                       </button>

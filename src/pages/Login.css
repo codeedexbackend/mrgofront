@@ -105,3 +105,16 @@
     margin-top: -25px;
     border-radius: 10px;
 }
+
+
+@media screen and (min-width: 359px) and (max-width: 767px) {
+  #lpko{
+margin-top: 11%;
+  }
+  .welcome{
+    margin-left: 25%;
+  }
+}
+.google{
+  margin-left: 13% !important;
+}

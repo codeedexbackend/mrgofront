@@ -6,6 +6,11 @@
  #nvb{
   margin-left: 10%;
  }
+
+ .Navbar{
+  box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 14px 0 rgba(0, 0, 0, 0.19);
+}
+ 
  
 .mrgoo { 
     font-family: "Montserrat", sans-serif; 
@@ -92,3 +97,9 @@
           margin-right: -153px; 
         } 
       }
+
+      #headerho{
+        border-bottom: 1px solid black;
+      }
+     
+

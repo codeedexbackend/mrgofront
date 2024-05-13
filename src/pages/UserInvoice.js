@@ -4,14 +4,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { invoicenumber } from '../service/allApi';
+import Footer from '../components/Footer';
 
 function UserInvoice() {
   const [invoiceData, setInvoiceData] = useState({
     invoice_numbers: [],
     booking_dates: {}
   });
-  const userId = JSON.parse(sessionStorage.getItem("userId")) || [];
+  const userId = JSON.parse(sessionStorage.getItem("userId")) || null;
+  const [searchTerm, setSearchTerm] = useState(""); // State to hold search term 
 
+ 
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -38,6 +42,13 @@ function UserInvoice() {
   
     fetchData();
   }, [userId]); // Trigger the effect when the user parameter changes
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+  const filteredInvoices = invoiceData.invoice_numbers.filter(invoice =>
+    invoice.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    invoiceData.booking_dates[invoice].join(", ").toLowerCase().includes(searchTerm.toLowerCase())
+  );
   
   return (
     <div>
@@ -48,20 +59,21 @@ function UserInvoice() {
             type="text"
             placeholder="Search..."
             className="search-input2"
+            value={searchTerm}
+  onChange={handleSearchChange}
           />
         </div>
         <h2>INVOICE</h2>
         <ul className="responsive-table">
-          
           <li className="table-header">
             <div className="col col-1">Ref ID</div>
             <div className="col col-2">Invoice No</div>
             <div className="col col-3">Booking Date</div>
             {/* Add more columns here if needed */}
           </li>
-          {invoiceData.invoice_numbers && invoiceData.invoice_numbers.map((invoice, index) => {
-            if (!invoice) return null; // Skip rendering if invoice is null
-            return (
+          {filteredInvoices.map((invoice, index) => {
+  if (!invoice) return null; // Skip rendering if invoice is null
+  return (
               <li className="table-row" key={index}>
                 <div className="col col-1" data-label="Ref ID">{index + 1}</div>
                 <div className="col col-2" data-label="Invoice No">
@@ -79,6 +91,7 @@ function UserInvoice() {
           })}
         </ul>
       </div>
+      <Footer></Footer>
     </div>
   );
 }

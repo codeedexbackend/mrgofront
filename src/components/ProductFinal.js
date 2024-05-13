@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "../pages/invoice.css";
-import { Modal, Form, Col, Row } from "react-bootstrap";
+import "./ProductFinal.css"
+import { Modal } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BASE_URL } from "../service/baseUrl";
 import { shippingregdelete, shippingregedit } from "../service/allApi";
 import Header from "./Header";
 import ConfirmationModal from "./ConfirmationModal";
+import Footer from "./Footer";
 
 function ProductFinal({ userName }) {
   const { userId, invoice } = useParams();
   const [showEditModal, setShowEditModal] = useState(false);
   const [editEmployeeData, setEditEmployeeData] = useState(null);
-  const [showNonDocumentFields, setShowNonDocumentFields] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // State to hold search term
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
@@ -36,7 +36,14 @@ function ProductFinal({ userName }) {
       // You can handle errors here
     }
   };
-
+  const filteredOrders = orders.filter(order =>
+    order.Reciepient_Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    order.Consignment.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    order.Booking_date.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    order.tracking_id.toLowerCase().includes(searchTerm.toLowerCase()) 
+  );
+  
+  
   const fetchBillingData = async (userId, invoiceNumber) => {
     try {
       const response = await fetch(
@@ -66,11 +73,7 @@ function ProductFinal({ userName }) {
     setSearchTerm(e.target.value); // Update search term state
   };
 
-  const handleEditModalOpen = (employee) => {
-    console.log("Edit modal opened for employee:", employee);
-    setEditEmployeeData(employee);
-    setShowEditModal(true);
-  };
+ 
   const [formData, setFormData] = useState({
     Shipping_Through: "",
     Name: "" || "", // Set initial value of Name to userName from URL params
@@ -234,7 +237,6 @@ function ProductFinal({ userName }) {
         </div>
         <h2>Product List</h2>
         <ul className="responsive-table">
-          <h4>UserName : {userName}</h4>
 
           <li className="table-header">
             <div className="col col-1">REF ID</div>
@@ -244,25 +246,25 @@ function ProductFinal({ userName }) {
             <div className="col col-2">Tracking Code</div>
             <div className="col col-2">Actions</div>
           </li>
-          {orders.map((order, index) => (
-            <li className="table-row" key={index}>
+          {filteredOrders.map((order, index) => (            <li className="table-row" key={index}>
               <div className="col col-1" data-label="Reference ID">
                 {index + 1}
               </div>
-              <div className="col col-2" data-label="Customer Name">
+              <div className="col col-2" data-label="Recipient Name">
                 {order.Reciepient_Name}
               </div>
               <div className="col col-3" data-label="Consignment Type">
                 {order.Consignment}
               </div>
-              <div className="col col-2" data-label="Shipping Through">
+              <div className="col col-2" data-label="Booking Date">
                 {order.Booking_date}
               </div>
-              <div className="col col-2" data-label="Shipping Through">
+              <div className="col col-2" data-label="Tracking Code">
                 {order.tracking_id}
               </div>
               <div className="col col-3" data-label="Actions">
                 <button
+                style={{height:'85%',fontSize:'15px'}}
                   className="btn btn-danger"
                   onClick={() => handleDeleteConfirmation(order.id)}
                 >
@@ -569,6 +571,7 @@ function ProductFinal({ userName }) {
         onConfirm={handleDeleteConfirmed} // Call handleDeleteConfirmed on confirmation
       />
       <ToastContainer />
+      <Footer></Footer>
     </div>
   );
 }

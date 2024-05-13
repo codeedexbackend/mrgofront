@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { orderview } from "../service/allApi";
-
-const MyOrders = () => {
+import Footer from "../components/Footer";
+import { Col, Row } from "react-bootstrap";
+import './myorder.css'
+const MyOrders = ({  toggleFilterSidebar }) => {
     const { id } = useParams(); // Extracting user_id from route params
     const [orders, setOrders] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(10); // Number of items per page
     const [searchQuery, setSearchQuery] = useState("");
+    const [showFilterSidebar, setShowFilterSidebar] = useState(false); // State to manage filter sidebar visibility
+    const [selectedOption, setSelectedOption] = useState('');
 
     useEffect(() => {
         fetchOrders(id);
@@ -40,6 +44,20 @@ const MyOrders = () => {
         setSearchQuery(e.target.value);
         setCurrentPage(1); // Reset current page to 1 when search query changes
     };
+  // Filter orders by date range
+  const filterByDateRange = (range) => {
+    // Implement filtering logic based on the selected range
+    // For now, just console log the selected range
+    console.log("Filter by", range);
+};
+const handleSelectChange = (event) => {
+  const selectedValue = event.target.value;
+  setSelectedOption(selectedValue);
+  filterByDateRange(selectedValue);
+};
+const toggleSidebar = () => {
+  setShowFilterSidebar(!showFilterSidebar);
+};
 
     return (
         <div>
@@ -53,8 +71,59 @@ const MyOrders = () => {
             onChange={handleSearchChange}
             className="search-input2"
           />
+          {/* <Row style={{whiteSpace:'nowrap'}}>
+    <Col>
+      <div className="input-container">
+        <label>Start Date:</label>
+        <input
+          className="input"
+          type="date"
+          // value={startDate}
+          // onChange={(e) => setStartDate(e.target.value)}
+        />
+      </div>
+    </Col>
+    <Col id="lplpk">
+      <div id="lplpk" className="input-container">
+        <label>End Date:</label>
+        <input
+          className="input"
+          type="date"
+          // value={endDate}
+          // onChange={(e) => setEndDate(e.target.value)}
+        />
+      </div>
+    </Col>
+
+ </Row> */}
+ {/* <button style={{height:'10%'}} className="btn btn-secondary" onClick={() => setShowFilterSidebar(!showFilterSidebar)}>Filter</button> */}
+
          
         </div>
+        {showFilterSidebar && (
+       <div className={`sidebar ${showFilterSidebar ? 'show' : ''}`}>
+       <div className="sidebar-header">
+           <h3>Filter</h3>
+           <i className="fas fa-times close-button" onClick={toggleSidebar}></i>
+           
+       </div>
+       <select
+           className="select-dropdown"
+           value={selectedOption}
+           onChange={handleSelectChange}
+       >
+           <option value="">Choose an option</option>
+           <option value="Today">Today</option>
+           <option value="Yesterday">Yesterday</option>
+           <option value="Last 7 days">Last 7 days</option>
+           <option value="Last 30 days">Last 30 days</option>
+           <option value="This Month">This Month</option>
+           <option value="Last Month">Last Month</option>
+           <option value="Custom">Custom</option>
+       </select>
+   </div>
+)}
+
                 <div className="table-responsive">
                     <div className="table-wrapper">
                         <div className="table-title">
@@ -73,6 +142,7 @@ const MyOrders = () => {
                                     <th>Booking Date</th>
                                     <th>Delivery Date</th>
                                     <th>Status</th>
+                                    <th>Total Amount</th>
                                     <th>Print</th>
                                 </tr>
                             </thead>
@@ -85,6 +155,8 @@ const MyOrders = () => {
                                         <td>{order.Booking_date}</td>
                                         <td>{order.Delivery_date}</td>
                                         <td>{order.registration_status}</td>
+                                        <td>{order.final_amount}</td>
+
                                         <td>
                                             <Link to={`/label/${id}/${order.id}`}>
                                                 <button className="btn btn-outline"><i className="fa-solid fa-print"></i></button>
@@ -157,11 +229,10 @@ const MyOrders = () => {
     </li>
   </ul>
 </div>
-
-
-                    </div>
+       </div>
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

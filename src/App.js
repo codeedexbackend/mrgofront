@@ -14,14 +14,12 @@ import Track from "./components/Track";
 import UserControl from "./Admin/Pages/UserControl";
 import Ahome from "./Admin/Pages/Ahome";
 import User from "./Admin/Pages/User";
-import Request from "./Admin/Pages/Request";
 import Billing from "./Admin/Pages/Billing";
 import Atrack from "./Admin/Pages/Atrack";
 import Booking from "./Admin/Pages/Booking";
 import LoginForm from "./Admin/Pages/LoginForm";
 import Profile from "./pages/Profile";
 import Notification from "./Admin/Pages/Notification";
-import Afooter from "./Admin/Pages/Afooter";
 import Acontact from "./Admin/Pages/Acontact";
 import ContactDetails from "./Admin/Pages/ContactDeatils";
 import ProductList from "./Admin/Pages/ProductList";
@@ -32,24 +30,22 @@ import Label from "./components/Label";
 import ForgotPassword from "./pages/ForgotPassword";
 import Pnf from "./pages/Pnf";
 import InProduct from "./Admin/Pages/InProduct";
-import Astatus from "./Admin/Pages/Astatus";
 import Billingprint from "./Admin/Pages/Billingprint";
 import Forgot from "./pages/Forgot";
 import OTPVerification from "./pages/OTPVerification";
 import Password from "./pages/Password";
 import UserInvoice from "./pages/UserInvoice";
+import Status from "./Admin/Pages/Status";
+import Order from "./Admin/Pages/Order";
 
 function App() {
   const location = useLocation();
 
-  // Function to check if the user is logged in as admin
   const isAdminLoggedIn = () => {
-    // Check if admin token exists in local storage or session
     const adminToken = localStorage.getItem("adminToken");
-    return adminToken; // Returns true if adminToken is truthy, false otherwise
+    return adminToken;
   };
 
-  // Custom route component to restrict access to admin pages if not logged in
   const AdminRoute = ({ element }) => {
     return isAdminLoggedIn() ? element : <Navigate to="/admin/login" />;
   };
@@ -74,7 +70,7 @@ function App() {
           element={<ProductFinal />}
         />
         <Route path="/Profile" element={<Profile />} />
-        <Route path="/admin/*" element={<AdminRoute element={<Ahome />} />} />
+        <Route path="/admin/" element={<AdminRoute element={<Ahome />} />} />
         <Route
           path="/admin/user"
           element={<AdminRoute element={<UserControl />} />}
@@ -105,9 +101,10 @@ function App() {
           element={<AdminRoute element={<Acontact />} />}
         />
         <Route
-          path="/admin/Astatus"
-          element={<AdminRoute element={<Astatus />} />}
+          path="/admin/orderstatus"
+          element={<AdminRoute element={<Status/>} />}
         />
+        
         <Route
           path="/admin/Acontact/:id"
           element={<AdminRoute element={<ContactDetails />} />}
@@ -119,6 +116,10 @@ function App() {
         <Route
           path="/admin/Trackorder"
           element={<AdminRoute element={<TrackingOrder />} />}
+        />
+        <Route
+          path="/admin/orders"
+          element={<AdminRoute element={<Order />} />}
         />
         <Route path="/orders/:id" element={<MyOrders />} />
         <Route path="/label/:userId/:orderId" element={<Label />} />

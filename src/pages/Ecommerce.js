@@ -1,15 +1,33 @@
-import React from 'react';
-import { Accordion } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
 import './Express.css';
 import ecom from '../Assets/Rectangle 72 (2).png'
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Freaquently from '../components/Freaquently';
-import { Link } from 'react-router-dom';
-import Card from '../components/Card';
+import {  useNavigate } from 'react-router-dom';
 import Ccard from './Ccard';
 
 function Ecommerce() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track user login status
+  const navigate = useNavigate();
+
+  useEffect(() => { 
+    window.scrollTo(0, 0);
+    // Check if user is logged in
+    if (localStorage.getItem('id')) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+  const handleGetStarted = () => {
+    if (!isLoggedIn) {
+      navigate('/login');
+    } else {
+      // Navigate to the shipping page if the user is logged in
+      navigate('/shipping');
+    }
+  };
   return (
     <div>
       <Header></Header>
@@ -41,10 +59,10 @@ function Ecommerce() {
               </div>
             </div>
 
-            <Link to={"/shipping"}>
-              <button className='btn btn-primary'><b>Start Shipping</b> <i className="fa-solid fa-arrow-right fa-beat-fade ms-2"></i></button>
+           
+              <button className='btn btn-primary' onClick={handleGetStarted}><b>Start Shipping</b> <i className="fa-solid fa-arrow-right fa-beat-fade ms-2"></i></button>
 
-            </Link>                    </div>
+                             </div>
           <div className='col-md-6'>
             <img className='img image123 expi' src={ecom} alt="ert" />
           </div>

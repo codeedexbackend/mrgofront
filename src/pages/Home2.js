@@ -10,7 +10,7 @@ function Home2() {
   return (
     <div>
       <div className="mt-2">
-        <h2 style={{marginLeft:'5%'}}>Why Choose Us</h2>
+        <h2 style={{textAlign:'center'}}>Why Choose Us</h2>
         <p
           className="container  mt-2 text-left"
           id="ik"

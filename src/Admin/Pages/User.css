@@ -283,3 +283,14 @@ tr:hover {
 .delete-icon {
   color: #dc3545;
 }
+
+#lplpk{
+  margin-left: -13%;
+}
+
+
+@media only screen and (max-width: 1199px) { 
+  #lplpk{
+    margin-left: 0%;
+  }
+        }

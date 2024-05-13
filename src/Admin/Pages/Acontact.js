@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./Acontact.css";
 import AHeader from "./AHeader";
 import { contactusdelete, contactview } from "../../service/allApi";
+import Afooter from "./Afooter";
 function Acontact() {
   const [contactData, setContactData] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
@@ -194,6 +195,7 @@ function Acontact() {
         </div>
       )}
       <ToastContainer /> 
+      <Afooter></Afooter>
     </div>
   );
 }

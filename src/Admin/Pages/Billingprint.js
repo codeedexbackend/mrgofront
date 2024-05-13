@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './BPrint.css';
 import Table from 'react-bootstrap/Table';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {  profileviewApi } from '../../service/allApi';
 import { BASE_URL } from '../../service/baseUrl';
 
@@ -14,7 +14,7 @@ function Billingprint() {
     const [totalAmount, setTotalAmount] = useState(0); // State to hold the total amount
     const [packing, setPacking] = useState(""); // State to hold packing value
     const [packingCover, setPackingCover] = useState(""); // State to hold packing cover value
-    
+    const navigate=useNavigate()
     const fetchBillingData = async (userId, invoiceNumber) => {
         try {
             const response = await fetch(`${BASE_URL}/api/billing/${userId}/${invoiceNumber}/`);
@@ -97,6 +97,7 @@ function Billingprint() {
 
     const handlePrint = () => {
         window.print();
+        navigate('/admin/')
     };
    
     return (
@@ -112,7 +113,7 @@ function Billingprint() {
                             <div className="row">
                                 <div className="col-12">
                                     <div className="text-center text-150">
-                                        <span className="text-default-d3"><b className='text-danger'>Mr.GO</b>.com</span>
+                                        <span className="text-default-d3"><b className='text-danger'>MrGO</b>.in</span>
                                     </div>
                                 </div>
                             </div>

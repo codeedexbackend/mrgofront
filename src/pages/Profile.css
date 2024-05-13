@@ -65,5 +65,10 @@ body {
 
 /* CSS */
 /* CSS */
+@media screen and (max-width: 476px) and (min-width: 360px) {
 
-  
+  #updatee{
+    margin-top: 3%;
+    margin-right: 16%
+  }
+}

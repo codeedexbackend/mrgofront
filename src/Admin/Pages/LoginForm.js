@@ -5,7 +5,7 @@ import { toast } from 'react-toast';
 
 const withLoginFormBackground = (WrappedComponent) => {
   return () => (
-    <div style={{ backgroundImage: "url('https://i.postimg.cc/jSZRnkf5/5166950.jpg')", minHeight: '100vh', padding: '20px' }}>
+    <div style={{ backgroundImage: "url('https://i.postimg.cc/jSZRnkf5/5166950.jpg')", minHeight: '100vh', padding: '20px',backgroundSize:'cover',backgroundRepeat:'no-repeat' }}>
       <WrappedComponent />
     </div>
   );
@@ -34,7 +34,7 @@ const LoginForm = () => {
       const { token } = response.data;
       const {id}=response.data;
       if(id){
-        localStorage.setItem('id',id)
+        localStorage.setItem('ido',id)
         localStorage.setItem('adminToken',token)
         setError('');
         navigate('/admin');

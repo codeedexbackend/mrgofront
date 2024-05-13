@@ -57,14 +57,14 @@ function AHeader({ unreadCount }) {
                   </span>
                 </Offcanvas.Title>
               </Offcanvas.Header>
-              <Offcanvas.Body>
+              <Offcanvas.Body style={{marginLeft:'0%'}}>
                 <Nav className="justify-content-left flex-grow-1 adminhome" style={{ marginTop: '3px' }}>
                   <Link to={"/admin"} style={{ textDecoration: "none" }}>
                     <Nav.Link
                       href="#action1"
                       style={{ color: "black", fontWeight: "bolder" }}
                     >
-                      {<span className="ndd">Requests </span>}
+                      {<span className="ndd ">Requests </span>}
                     </Nav.Link>
                   </Link>
                   <Link to={"/admin/Track"} style={{ textDecoration: "none" }}>
@@ -105,12 +105,20 @@ function AHeader({ unreadCount }) {
                       {<span className="ndd">Billing </span>}
                     </Nav.Link>
                   </Link> */}
-                  <Link to={"/admin/Astatus"} style={{ textDecoration: "none" }}>
+                  <Link to={"/admin/orderstatus"} style={{ textDecoration: "none" }}>
                     <Nav.Link
                       href="#action1"
-                      style={{ color: "black", fontWeight: "bolder" }}
+                      style={{ color: "black", fontWeight: "bolder",whiteSpace:'nowrap' }}
                     >
                       {<span className="ndd">Order Status </span>}
+                    </Nav.Link>
+                  </Link>
+                  <Link to={"/admin/orders"} style={{ textDecoration: "none" }}>
+                    <Nav.Link
+                      href="#action1"
+                      style={{ color: "black", fontWeight: "bolder",whiteSpace:'nowrap' }}
+                    >
+                      {<span className="ndd">Orders</span>}
                     </Nav.Link>
                   </Link>
                 </Nav>
@@ -118,10 +126,10 @@ function AHeader({ unreadCount }) {
                   <NavDropdown
                     className="username"
                     title={
-                      <span className="ndd">
+                      <span className="ndd" id="mrrrgo">
                         <i class="fa-regular fa-user me-4 ">
                           <span
-                            className="ms-2 "
+                            className=" "
                             style={{ color: "black", fontWeight: "bolder" }}
                           >
                            Mr.Go
@@ -142,7 +150,7 @@ function AHeader({ unreadCount }) {
                   </NavDropdown>
                   <Link to="/admin/Acontact"  className="nav-link msg">
                     <Nav.Link href="#deets" className="naviv">
-<div style={{display:'ruby'}}>
+<div style={{display:'ruby',whiteSpace:'nowrap'}} id="mlnk">
                         <i className="fa-regular fa-message bgbg"><span className="msgg">messages</span></i> 
   
 </div>                      {unreadCount > 0 && (
@@ -152,7 +160,7 @@ function AHeader({ unreadCount }) {
                   </Link>
                   <Link to="/admin/Notification">
                     <Nav.Link href="#deets" className="naviv ntf">
-                      <i class="fa-regular fa-bell navbaricons bgbg "><span className="msgg">Notifications</span> </i>
+                      <i class="fa-regular fa-bell navbaricons bgbg " id="kojij"><span className="msgg">Notifications</span> </i>
                     </Nav.Link>
                   </Link>
                 </Nav>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row, Col, Form, Button } from 'react-bootstrap';
+import {  Button } from 'react-bootstrap';
 import './Forgot.css'; // Create a CSS file for styling
 import { otpsend } from '../service/allApi';
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook

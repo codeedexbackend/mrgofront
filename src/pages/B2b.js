@@ -1,15 +1,39 @@
-import React from 'react';
-import { Accordion } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
 import './Express.css';
 import b2b from '../Assets/Rectangle 72 (1).png'
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Freaquently from '../components/Freaquently';
-import { Link } from 'react-router-dom';
-import Card from '../components/Card';
+import { useNavigate } from 'react-router-dom';
+
 import Ccard from './Ccard';
 
 function B2b() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track user login status
+  const navigate = useNavigate();
+
+ 
+
+  useEffect(() => { 
+    window.scrollTo(0, 0);
+    // Check if user is logged in
+    if (localStorage.getItem('id')) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+  const handleGetStarted = () => {
+    console.log("isLoggedIn:", isLoggedIn); // Add this line to log the value of isLoggedIn
+    if (!isLoggedIn) {
+      navigate('/login');
+    } else {
+      // Navigate to the shipping page if the user is logged in
+      navigate('/shipping');
+    }
+  };
+  
   return (
     <div>
       <Header></Header>
@@ -41,12 +65,12 @@ function B2b() {
               </div>
             </div>
 
-            <Link to={"/shipping"}>
-              <button className='btn btn-primary ms-2'><b>Start Shipping</b> <i className="fa-solid fa-arrow-right fa-beat-fade ms-2"></i></button>
+          
+              <button className='btn btn-primary ms-2' onClick={handleGetStarted}><b>Start Shipping</b> <i className="fa-solid fa-arrow-right fa-beat-fade ms-2"></i></button>
 
-            </Link>                    </div>
+                              </div>
           <div className='col-md-6'>
-            <img style={{ marginLeft: "-22px" }} className='img expi' src={b2b} alt="Your Image"/>
+            <img style={{ marginLeft: "-22px" }} className='img expi' src={b2b} alt="Your"/>
           </div>
         </div>
       </div>

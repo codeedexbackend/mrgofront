@@ -48,6 +48,7 @@
     left: 343px;
     background-color: white;
     margin-left: 20%;
+    border-radius: 31px;
   }
   .pp {
     font-family: "Montserrat", sans-serif;
@@ -238,4 +239,31 @@
       #whru{
         margin-left: 13%;
       }
+    }
+
+    .slick-dots {
+      bottom: -30% !important;
+    }
+    .slick-prev:before, .slick-next:before {
+      color: rgb(44 73 129) !important;
+    }
+
+
+    #dropdownn{
+      top: 52%;
+      right: 6%;
+      position: absolute;
+      cursor: pointer;
+    }
+    @media screen and (min-width: 1500px){
+      #dropdownn{
+      top: 43%;
+      right: 9%;
+      }
+    }
+    @media screen and (max-width: 768px) and (min-width: 360px) {
+      #dropdownn{
+        top: 74%;
+       
+        }
     }

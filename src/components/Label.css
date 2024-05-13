@@ -100,4 +100,11 @@
   .hidden {
     display: none;
   }
-  
+  #labell{
+    width: 50%;
+  }
+  @media screen and (max-width: 768px) and (min-width: 360px) {
+    #labell{
+        width: 75%;
+    }
+  }

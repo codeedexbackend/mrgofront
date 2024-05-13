@@ -18,12 +18,12 @@ function ContactUs() {
     try {
       await contactus(formData);
       // Show success toast message
-      toast.success('Form submitted successfully', {
+      toast.success('Message submitted successfully', {
         onClose: () => window.location.reload(), // Refresh page when toast is closed
       });
     } catch (error) {
       // Show error toast message
-      toast.error('Error submitting form');
+      toast.error('Error submitting message');
     }
   };
 

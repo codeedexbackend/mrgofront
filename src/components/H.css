@@ -1,0 +1,34 @@
+@media (max-width: 1199px){
+    .losign{
+    width: 30%;
+    }
+    }
+
+    .losign{
+        font-weight: bold;
+    }
+
+    .navbar-expand-xl .navbar-nav .nav-link {
+        color: black !important;
+    }
+
+    .offcanvas-body {
+        margin-left: -4%;
+    }
+
+    @media only screen and (min-width: 350px) and (max-width: 1199px) { 
+        #brder{
+        margin-top: 10px;
+      
+       
+        }
+        .losign{
+            margin-top: 10px;
+        }
+        .brder{
+            margin-top: 10px;
+           
+
+        }
+        
+              }

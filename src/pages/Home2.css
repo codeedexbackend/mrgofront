@@ -163,8 +163,10 @@ letter-spacing: 0em;
 
   }
 
-  @media (min-width: 1760px) {
+  @media (min-width: 1560px) {
     #cards {
-      margin-left: 17%;
+justify-content: space-around; 
+margin-left: 10%;
+}
   }
-  }
+

@@ -5,10 +5,8 @@ import "./Shipping.css";
 import { Form, InputGroup, Col, Row } from "react-bootstrap";
 import Footer from "./Footer";
 import Header from "./Header";
-import { shippingreg } from "../service/allApi";
 import { Link, useNavigate } from "react-router-dom";
-import { render } from "react-dom";
-import { CircleLoader, ClipLoader } from "react-spinners";
+import {  ClipLoader } from "react-spinners";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BASE_URL } from "../service/baseUrl";
@@ -33,7 +31,7 @@ function ShippingRegistration() {
     Content_Type: "",
     Number_of_box: "",
     Declared_value: "",
-    user: getUserId(), // Set the user ID here
+    user: getUserId(), 
   });
 
   const [stepNumber, setStepNumber] = useState(1);
@@ -41,15 +39,12 @@ function ShippingRegistration() {
   const handleChange = (e) => {
     const { id, value } = e.target;
     if (id === "Pin_Code") {
-      // Special handling for pincode field
-      handlePincodeChange(e); // Call handlePincodeChange directly
+      handlePincodeChange(e);
     } else if (id === "Consignment_Choices") {
-      // Only update the Consignment field
       setFormData({ ...formData, Consignment: value });
     } else {
       let parsedValue;
       if (id === "Number_of_box" || id === "Declared_value") {
-        // Only parse as integer if it's Number_of_box or Declared_value
         parsedValue = parseInt(value) || "";
       } else {
         parsedValue = value;
@@ -100,27 +95,22 @@ function ShippingRegistration() {
 
   const handleStepSelect = (selectedStep) => {
     setStepNumber(selectedStep);
-    // Retrieve existing form data from local storage
     const storedFormData = JSON.parse(sessionStorage.getItem("formData")) || [];
 
-    // Ensure storedFormData is an array
     const updatedFormData = Array.isArray(storedFormData)
       ? [...storedFormData]
       : [];
 
-    // Ensure that all form data up to the selected step is stored in local storage
     for (let i = updatedFormData.length + 1; i <= selectedStep; i++) {
       updatedFormData.push(formData);
     }
 
-    // Update the form data and step number
     setFormData(updatedFormData[selectedStep - 1]);
     setStepNumber(selectedStep);
   };
   const [dropdownOptions, setDropdownOptions] = useState([1]);
 
   const handleNextClick = () => {
-    // Check if all fields are filled
     const isFormFilled =
       formData.Shipping_Through &&
       formData.Reciepient_Name &&
@@ -135,31 +125,26 @@ function ShippingRegistration() {
           formData.Declared_value));
 
     if (!isFormFilled) {
-      // If any field is missing, display an alert or perform any other error handling
       alert("Please fill all fields before proceeding.");
       return;
     }
 
-    // If all fields are filled, proceed with updating state and local storage
     setDropdownOptions([...dropdownOptions, dropdownOptions.length + 1]);
 
-    // Retrieve existing form data from session storage
     const storedFormData = JSON.parse(sessionStorage.getItem("formData")) || [];
 
-    // Ensure storedFormData is an array
     const updatedFormData = Array.isArray(storedFormData)
-      ? [...storedFormData, { ...formData }] // Copy formData into the array
-      : [{ ...formData }]; // Copy formData into a new array
+      ? [...storedFormData, { ...formData }] 
+      : [{ ...formData }]; 
 
-    // Store the updated array in session storage
     sessionStorage.setItem("formData", JSON.stringify(updatedFormData));
 
-    // Increment the step number by 1
     setStepNumber(stepNumber + 1);
 
-    // Reset the formData state to its initial state
+    const nextShippingThrough = formData.Shipping_Through;
+
     setFormData({
-      Shipping_Through: "",
+      Shipping_Through: nextShippingThrough,
       Name: "",
       Reciepient_Name: "",
       Mobile: "",
@@ -175,9 +160,8 @@ function ShippingRegistration() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault(); 
     handleNextClick();
-    // Retrieve form data from session storage
     const storedFormData = JSON.parse(sessionStorage.getItem("formData"));
 
     if (!storedFormData || !storedFormData.length) {
@@ -189,7 +173,7 @@ function ShippingRegistration() {
       const userID = getUserId();
       const config = {
         method: "post",
-        url: "https://api.mrgo.in/api/ShippingRegView/",
+        url: `${BASE_URL}/api/ShippingRegView/`,
         headers: {
           "Content-Type": "application/json",
         },
@@ -198,17 +182,13 @@ function ShippingRegistration() {
 
       const response = await axios.request(config);
       console.log(JSON.stringify(response.data));
-      // Handle response as needed, for example, show success message
       toast.success("Form submitted successfully")
       sessionStorage.setItem("userId", formData.user);
-      // Clear the form data from session storage after successful submission
       sessionStorage.removeItem("formData");
 
-      // Navigate to the productfinal page with the user ID and invoice number
       navigate(`/invoice/${formData.user}/`);
     } catch (error) {
       console.error(error);
-      // Handle error, show error message, etc.
       alert("Failed to submit form data. Please try again later.");
     }
   };
@@ -217,7 +197,7 @@ function ShippingRegistration() {
     <div>
       <Header />
       <div className="shipping-registration">
-        {loading && ( // Render spinner if loading state is true
+        {loading && ( 
           <div className="loading-spinner">
             <ClipLoader />{" "}
           </div>
@@ -276,9 +256,7 @@ function ShippingRegistration() {
                     id="Mobile"
                     className="form-control"
                     onChange={(e) => {
-                      // Remove non-numeric characters from the input value
                       const numericValue = e.target.value.replace(/\D/g, "");
-                      // Update the form data with the numeric value
                       setFormData({ ...formData, Mobile: numericValue });
                     }}
                     value={formData.Mobile}

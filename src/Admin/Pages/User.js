@@ -10,7 +10,7 @@ import {
   shippingregedit,
   tracking,
 } from "../../service/allApi";
-import { Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import { BASE_URL } from "../../service/baseUrl";
 
@@ -20,7 +20,6 @@ const User = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
   const [showEditModal, setShowEditModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [editEmployeeData, setEditEmployeeData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,6 +29,50 @@ const User = () => {
   const [statusValues, setStatusValues] = useState({});
   const [orderStatus, setOrderStatus] = useState({});
   const [trackingStatus, setTrackingStatus] = useState({});
+    const [selectedIds, setSelectedIds] = useState([]);
+    const [isAllSelected, setIsAllSelected] = useState(false);
+    const [fromDate, setFromDate] = useState(null);
+    const [toDate, setToDate] = useState(null);
+    // const { userId, invoice } = useParams();
+    const [endDate, setEndDate] = useState(null);
+    const [shippingRegistrations, setShippingRegistrations] = useState([]);
+    const [startDate, setStartDate] = useState(null);
+
+    // Function to handle all selection change
+    const handleAllSelectionChange = (e) => {
+      const { checked } = e.target;
+      setIsAllSelected(checked);
+      if (checked) {
+        const allIds = currentItems.map((item) => item.id);
+        setSelectedIds(allIds);
+      } else {
+        setSelectedIds([]);
+      }
+    };
+  
+    // Function to handle individual row selection change
+const handleSelectionChange = (id, checked) => {
+  // Update selectedIds based on the checkbox status of the row
+  if (checked) {
+    setSelectedIds((prevSelectedIds) => [...prevSelectedIds, id]);
+  } else {
+    setSelectedIds((prevSelectedIds) => prevSelectedIds.filter((selectedId) => selectedId !== id));
+  }
+
+  // Update the status of the table head checkbox based on the selectedIds
+  const allSelected = currentItems.every((item) => selectedIds.includes(item.id));
+  setIsAllSelected(allSelected);
+  
+  // If any row is deselected, uncheck the table head checkbox
+  if (!checked) {
+    setIsAllSelected(false);
+  }
+};
+
+
+  
+    // Function to determine if a row is selected
+    const isSelected = (id) => selectedIds.includes(id);
   const orderStatusOptions = [
     "Placed",
     "Collected",
@@ -67,11 +110,16 @@ const User = () => {
   const fetchOrders = async (userId) => {
     try {
       const data = await orderview(userId);
+      // Clear existing orders data before updating state
+      setOrders([]); // Clear existing data
       setOrders(data || []);
     } catch (error) {
       console.error("Error fetching orders data:", error);
     }
-  };
+};
+
+
+
   const handleConsignmentChange = (event) => {
     setShowNonDocumentFields(event.target.value === "Non-Document");
     // Add any other handling if needed
@@ -206,10 +254,7 @@ const User = () => {
     setSearchQuery(e.target.value); // Update searchQuery state
   };
 
-  const handleSortByDate = () => {
-    // Toggle between ascending and descending order
-    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-  };
+  
 
   const handleStatusChange = async (id, value) => {
     try {
@@ -262,23 +307,25 @@ const User = () => {
     try {
       const formData = new FormData(e.target);
       Object.entries(editEmployeeData).forEach(([key, value]) => {
-        if (!formData.get(key)) {
-          // If the key is Delivery_date, format the date before appending
-          if (key === "Delivery_date") {
-            const formattedDate = new Date(value).toISOString().split("T")[0]; // Format date as YYYY-MM-DD
-            formData.append(key, formattedDate);
-          } else if (key === "packing" || key === "packing_cover") {
-            // If packing or packing_cover is empty, set it to null
-            if (value.trim() === "") {
-              formData.append(key, null);
-            } else {
-              formData.append(key, value);
-            }
-          } else {
-            formData.append(key, value);
-          }
+        // Skip if the value is empty or null
+        if (value === "" || value === null) {
+          return;
+        }
+
+        // If the key is Delivery_date, format the date before appending
+        if (key === "Delivery_date") {
+          const formattedDate = new Date(value).toISOString().split("T")[0]; // Format date as YYYY-MM-DD
+          formData.append(key, formattedDate);
+        } else {
+          formData.append(key, value);
         }
       });
+
+      // Append an empty string value for payment_status if not present
+      if (!formData.has('payment_status')) {
+        formData.append('payment_status', '');
+      }
+
       const response = await shippingregedit(editEmployeeData.id, formData);
       console.log("Employee updated successfully:", response);
       setShowEditModal(false);
@@ -292,6 +339,7 @@ const User = () => {
     }
   };
 
+
   const fetchShippingRegistrationData = async (userId) => {
     // Accept userId as a parameter
     try {
@@ -302,35 +350,93 @@ const User = () => {
     }
   };
 
-  // Check if employees is defined before filtering
-  const filteredEmployees = employees.filter((employee) => {
+
+
+ const fetchShippingRegistrations = async () => {
+  try {
+    // Format start and end dates to yyyy-mm-dd format
+    const formattedStartDate = formatDate(startDate);
+    const formattedEndDate = formatDate(endDate);
+
+    // Make API request with formatted start and end dates
+    const response = await fetch(
+      `${BASE_URL}/api/shipping-registrations/search/${userId}/?start_date=${formattedStartDate}&end_date=${formattedEndDate}`
+    );
+    if (response.ok) {
+      const data = await response.json();
+      // Set the shipping registrations data to the fetched data
+      setShippingRegistrations(data.orders);
+      // Clear the existing employees data
+      setEmployees([]);
+      console.log("Shipping registrations data fetched successfully.");
+    } else {
+      console.error("Failed to fetch shipping registrations");
+    }
+  } catch (error) {
+    console.error("Error fetching shipping registrations:", error);
+  }
+};
+
+  
+
+// Define the formatDate function in the global scope
+const formatDate = (date) => {
+  const [year, month, day] = date.split("-");
+  return `${day}/${month}/${year}`;
+};
+
+// Initialize sortedEmployees variable outside the conditional block
+let sortedEmployees = [];
+
+// Check if shippingRegistrations is defined and iterable
+if (shippingRegistrations && typeof shippingRegistrations[Symbol.iterator] === 'function') {
+  // Combine employees and shippingRegistrations arrays
+  const allData = [...employees, ...shippingRegistrations];
+
+  // Filter allData by date range and search query
+  const filteredData = allData.filter((item) => {
+    // Convert search fields to lowercase for case-insensitive filtering
     const searchFields = [
-      employee.Shipping_Through?.toLowerCase() || "",
-      employee.Content_Type?.toLowerCase() || "",
-      employee.Reciepient_Name?.toLowerCase() || "",
-      employee.City?.toLowerCase() || "",
-      employee.Address?.toLowerCase() || "",
-      String(employee.Pin_Code)?.toLowerCase() || "",
-      String(employee.Mobile)?.toLowerCase() || "",
-      employee.Booking_date?.toLowerCase() || "",
-      employee.Consignment?.toLowerCase() || "",
-      employee.Number_of_box?.toLowerCase() || "",
-      employee.Declared_value?.toLowerCase() || "",
-      employee.Delivery_date?.toLowerCase() || "",
-      employee.tracking_id?.toLowerCase() || "",
+      item.Shipping_Through?.toLowerCase() || "",
+      item.Content_Type?.toLowerCase() || "",
+      item.Reciepient_Name?.toLowerCase() || "",
+      item.City?.toLowerCase() || "",
+      item.Address?.toLowerCase() || "",
+      String(item.Pin_Code)?.toLowerCase() || "",
+      String(item.Mobile)?.toLowerCase() || "",
+      item.Booking_date || "", // Assuming Booking_date is properly formatted
+      item.Consignment?.toLowerCase() || "",
+      item.Number_of_box?.toLowerCase() || "",
+      item.Declared_value?.toLowerCase() || "",
+      item.Delivery_date?.toLowerCase() || "",
+      item.tracking_id?.toLowerCase() || "",
     ];
-    return searchFields.some((field) =>
+
+    // Filter based on search query and fields
+    const containsSearchQuery = searchFields.some((field) =>
       field.includes(searchQuery.toLowerCase())
     );
+
+    // Check if the Booking_date falls within the specified date range
+    const bookingDate = new Date(item.Booking_date); // Assuming Booking_date is properly formatted
+    const isWithinDateRange =
+    (!fromDate || bookingDate >= new Date(fromDate)) &&
+    (!toDate || bookingDate <= new Date(toDate));
+
+    return containsSearchQuery && isWithinDateRange;
   });
 
-  const sortedEmployees = filteredEmployees.sort((a, b) => {
-    const dateA = new Date(a.Booking_date);
-    const dateB = new Date(b.Booking_date);
-    return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
-  });
+  sortedEmployees = filteredData;
+} else {
+  console.error("shippingRegistrations is not defined or not iterable");
+}
 
-  const handleDelete = async (id) => {
+const indexOfLastItem = currentPage * itemsPerPage;
+const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+// Slice the employees array to get the current page's items
+const currentItems = sortedEmployees.slice(indexOfFirstItem, indexOfLastItem);
+
+ const handleDelete = async (id) => {
     try {
       const headers = {}; // Optionally, you may include headers if required by your API
       await shippingregdelete(headers, id);
@@ -348,15 +454,17 @@ const User = () => {
     }
   };
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  // Slice the employees array to get the current page's items
-  const currentItems = sortedEmployees.slice(indexOfFirstItem, indexOfLastItem);
+
 
   // Function to handle pagination
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  useEffect(() => {
+    if (startDate && endDate) {
+      fetchShippingRegistrations();
+    }
+  }, [startDate, endDate]);
 
   const handleWeightOrPriceChange = () => {
     const totalWeight = parseFloat(
@@ -442,8 +550,83 @@ const User = () => {
       toast.error("Error updating payment status. Please try again.");
     }
   };
+ 
 
-  return (
+   
+  
+
+  const handleDeleteSelected = async () => {
+    try {
+      const headers = {}; // Optionally, you may include headers if required by your API
+      const response = await fetch(`${BASE_URL}/api/shipping-registrations/bulk-delete/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...headers,
+        },
+        body: JSON.stringify({ registration_ids: selectedIds }), // Send selected IDs in the request body
+      });
+  
+      if (response.ok) {
+        // Handle success
+        console.log("Selected shipping registrations deleted successfully");
+        // Close the confirmation modal
+        setShowConfirmation(false);
+        // Show success toast notification
+        toast.success("Selected shipping registrations deleted successfully!");
+        // Refresh data after deletion
+        await fetchShippingRegistrationData(userId);
+        // Clear selectedIds
+        setSelectedIds([]);
+      } else {
+        // Handle failure
+        console.error("Failed to delete selected shipping registrations");
+        // Show error toast notification
+        toast.error("Failed to delete selected shipping registrations. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error deleting selected shipping registrations:", error);
+      // Handle error (e.g., show error message)
+      // Show error toast notification
+      toast.error("Error deleting selected shipping registrations. Please try again.");
+    }
+  };
+  
+  const calculateFinalAmount = () => {
+    // Parse values to ensure they are numeric
+    const totalPrice = parseFloat(document.getElementById('Total_price').value) || 0;
+    const packing = parseFloat(document.getElementById('packing').value) || 0;
+    const packingCover = parseFloat(document.getElementById('packing_cover').value) || 0;
+    
+    // Calculate the final amount
+    const finalAmount = totalPrice + packing + packingCover;
+    // Update the final amount input
+    document.getElementById('final_amount').value = finalAmount.toFixed(2); // Adjust to your desired formatting
+      // Update state with the new values
+      handleInputChange({
+        target: {
+          id: "packing",
+          value: packing.toString(), // Convert to string since handleInputChange might expect string values
+        },
+      });
+
+      handleInputChange({
+        target: {
+          id: "packing_cover",
+          value: packingCover.toString(), // Convert to string since handleInputChange might expect string values
+        },
+      });
+      handleInputChange({
+        target: {
+          id: "final_amount",
+          value: finalAmount.toString(), // Convert to string since handleInputChange might expect string values
+        },
+      });
+  }
+ 
+ 
+    
+ return (
     <div>
       <AHeader />
       <div className="container">
@@ -455,17 +638,62 @@ const User = () => {
             onChange={handleSearchChange}
             className="search-input2"
           />
-          <button className="sort-button" onClick={handleSortByDate}>
+        <div className="container">
+ <Row style={{whiteSpace:'nowrap'}}>
+    <Col>
+      <div className="input-container">
+        <label>Start Date:</label>
+        <input
+          className="input"
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+      </div>
+    </Col>
+    <Col id="lplpk">
+      <div id="lplpk" className="input-container">
+        <label>End Date:</label>
+        <input
+          className="input"
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+      </div>
+    </Col>
+ </Row>
+</div>
+
+
+       {selectedIds.length > 0 && (
+  <button
+    className="sort-button"
+    onClick={handleDeleteSelected}
+  >
+    Delete
+  </button>
+)}
+
+
+          {/* <button className="sort-button" onClick={handleSortByDate}>
             Sort by Booking Date{" "}
             <span
               className={`sort-icon ${sortOrder === "asc" ? "asc" : "desc"}`}
             ></span>
-          </button>
+          </button> */}
         </div>
         <div className="table-responsive">
           <table className="table custom-table">
             <thead>
               <tr>
+              <th>
+  <input
+    type="checkbox"
+    checked={isAllSelected}
+    onChange={handleAllSelectionChange}
+  />
+</th>
                 <th>Shipping Through</th>
                 <th>Recipient</th>
                 <th>City</th>
@@ -479,11 +707,13 @@ const User = () => {
                 <th>Declared Value</th>
                 <th>Delivery Date</th>
                 <th>Tracking Code</th>
+                <th>Invoice number</th>
                 <th>Status</th>
                 <th>Payment</th>
                 <th>Order Status</th>
                 <th>Actions</th>
                 <th>Print</th>
+                <th>Billing</th>
               </tr>
             </thead>
             <tbody>
@@ -496,6 +726,15 @@ const User = () => {
               ) : (
                 currentItems.map((employee) => (
                   <tr key={employee.id}>
+                     <td>
+                    <input
+                      type="checkbox"
+                      checked={isSelected(employee.id)}
+                      onChange={(e) =>
+                        handleSelectionChange(employee.id, e.target.checked)
+                      }
+                    />
+                  </td>
                     <td>{employee.Shipping_Through}</td>
                     <td>{employee.Reciepient_Name}</td>
                     <td>{employee.City}</td>
@@ -509,6 +748,8 @@ const User = () => {
                     <td>{employee.Declared_value}</td>
                     <td>{employee.Delivery_date}</td>
                     <td>{employee.tracking_id}</td>
+                    <td>{employee.invoice_number}</td>
+
                     <td style={{ whiteSpace: "nowrap" }}>
                       <select
                         value={statusValues[employee.id] || "Pending"}
@@ -600,6 +841,7 @@ const User = () => {
 
                     <td>
                       <a
+                                        
                         className="edit"
                         data-toggle="modal"
                         data-target="#editEmployeeModal"
@@ -613,7 +855,7 @@ const User = () => {
                           &#xE254;
                         </i>
                       </a>
-                      <a onClick={() => handleDeleteConfirmation(employee.id)}>
+                      <a  onClick={() => handleDeleteConfirmation(employee.id)}>
                         <i
                           style={{ marginLeft: "150%" }}
                           className="material-icons"
@@ -624,12 +866,19 @@ const User = () => {
                         </i>
                       </a>
                     </td>
+
                     <td>
                       <Link to={`/label/${userId}/${employee.id}`}>
                         <button className="btn btn-outline">
                           <i className="fa-solid fa-print"></i>
                         </button>
                       </Link>
+                    </td>
+                    <td>
+                    <Link to={`/admin/invoice/${userId}/${employee.invoice_number}`}>
+  <Button>Billing</Button>
+</Link>
+
                     </td>
                   </tr>
                 ))
@@ -653,18 +902,21 @@ const User = () => {
             </button>
           </li>
           {Array.from(
-            { length: Math.ceil(employees.length / itemsPerPage) },
-            (_, i) => (
-              <li
-                key={i}
-                className={`page-item ${currentPage === i + 1 ? "active" : ""}`}
-              >
-                <button className="page-link" onClick={() => paginate(i + 1)}>
-                  {i + 1}
-                </button>
-              </li>
-            )
-          )}
+  { length: Math.ceil(sortedEmployees.length / itemsPerPage) },
+  (_, i) => (
+    <li
+      key={i}
+      className={`page-item ${
+        currentPage === i + 1 ? "active" : ""
+      }`}
+    >
+      <button className="page-link" onClick={() => paginate(i + 1)}>
+        {i + 1}
+      </button>
+    </li>
+  )
+)}
+
           <li
             className={`page-item ${
               currentPage === Math.ceil(employees.length / itemsPerPage)
@@ -876,6 +1128,7 @@ const User = () => {
                     type="date"
                     className="form-control"
                     id="Delivery_date"
+                    defaultValue={editEmployeeData?.Delivery_date || ""}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -914,23 +1167,33 @@ const User = () => {
                 <div className="form-group">
                   <label>Packing</label>
                   <input
-                    type="text"
-                    className="form-control"
-                    id="packing"
-                    defaultValue={editEmployeeData?.packing || ""}
-                    onChange={handleInputChange}
-                  />
+  type="text"
+  className="form-control"
+  id="packing"
+  defaultValue={editEmployeeData?.packing || ""}
+  onChange={() => calculateFinalAmount()}
+/>
                 </div>
 
                 <div className="form-group">
                   <label>Packing Cover</label>
                   <input
-                    type="text"
-                    className="form-control"
-                    id="packing_cover"
-                    defaultValue={editEmployeeData?.packing_cover || ""}
-                    onChange={handleInputChange}
-                  />
+  type="text"
+  className="form-control"
+  id="packing_cover"
+  defaultValue={editEmployeeData?.packing_cover || ""}
+  onChange={() => calculateFinalAmount()}
+/>
+                </div>
+                <div className="form-group">
+                  <label>Final Amount</label>
+                  <input
+  type="text"
+  className="form-control"
+  id="final_amount"
+  defaultValue={editEmployeeData?.final_amount || ""}
+  disabled
+/>
                 </div>
                 <div className="form-group">
                   <label>Tracking code</label>
@@ -978,4 +1241,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default User;                                                                        

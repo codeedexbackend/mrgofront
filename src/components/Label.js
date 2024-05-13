@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import './Label.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Barcode from 'react-barcode';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { BASE_URL } from '../service/baseUrl';
+import { Col, Row } from 'react-bootstrap';
 
 function Label() {
   const [shippingRegistration, setShippingRegistration] = useState(null);
   const [user, setUser] = useState(null);
   const { userId, orderId } = useParams();
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
-  const [pageSize, setPageSize] = useState('A4'); // State to store selected paper size
   const [labelsPerPage, setLabelsPerPage] = useState(1); // State to store selected number of labels per page
   const [printerSize, setPrinterSize] = useState('A4'); // State to store selected printer size
   const [downloading, setDownloading] = useState(false); // State to track if downloading PDF
+  const id = localStorage.getItem("id");
 
+const navigate=useNavigate()
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,10 +38,7 @@ function Label() {
     fetchData();
   }, [userId, orderId]);
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
+ 
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -108,20 +107,21 @@ function Label() {
     // Close modal after downloading
     handleCloseModal();
   };
-  const handleprint   =()=>{
+  const handleprint = () => {
     window.print();
-  }
+    // Navigate to My Orders page after printing
+    navigate(`/orders/${id}`);  };
 
 
   return (
     <div id="label-container">
-      <div className="containerl container w-50">
+      <div className="containerl container " id='labell'>
         <div className="headerpp">
           <div>
             <h1 className="text-danger">
               <b>Mr.Go</b>
             </h1>
-            <h7>www.mrgo.com</h7>
+            <h7>www.mrgo.in</h7>
           </div>
           {shippingRegistration && <p>Through: {shippingRegistration.Shipping_Through}   {/* Barcode */}
             <div className="barcode-container">
@@ -142,22 +142,40 @@ function Label() {
           )}
         </div>
         <hr />
-        <div className="ship-to">
-          <p>
-            <b>Ship To :</b>
-          </p>
+       <Row>
+          <Col>
+            <div className="ship-to">
+              <p>
+                <b>Ship To :</b>
+              </p>
+              {shippingRegistration && (
+                <p>
+                  {shippingRegistration.Reciepient_Name}
+                  <br />
+                  {shippingRegistration.City}
+                  <br />
+                  {shippingRegistration.Address}
+                  <br />
+                  {shippingRegistration.Pin_Code}
+                </p>
+              )}
+            </div>
+          </Col>
+          <Col>
+          <div>
           {shippingRegistration && (
-            <p>
-              {shippingRegistration.Reciepient_Name}
-              <br />
-              {shippingRegistration.City}
-              <br />
-              {shippingRegistration.Address}
-              <br />
-              {shippingRegistration.Pin_Code}
+            <p style={{marginTop:'12%'}}>Content Type : {shippingRegistration.Content_Type} <br />
+            Invoice Number: {shippingRegistration.invoice_number} <br />
+            Consignment :  {shippingRegistration.Consignment}
+
             </p>
+           
+           
+
           )}
-        </div>
+          </div>
+          </Col>
+       </Row>
         <hr />
         <div className="shipped-by">
           <p>
@@ -191,12 +209,12 @@ function Label() {
           <p>If any queries :</p>
         </div>
         <div className="powered-by">
-          <p>Powered by Mr.Go</p>
+          <p>Powered by MrGo</p>
         </div>
       </div>
 
       {/* Download button */}
-      <div className={`text-center mb-3 ${downloading ? 'hidden' : ''}`} id="download-button">
+      <div className={`text-center mb-3 ${downloading ? 'hidden' : ''} hide-on-print mt-3`} id="download-button">
         <button className='btn btn-primary' onClick={handleprint}>
           Download
         </button>

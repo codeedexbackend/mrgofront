@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import "./Product.css";
 import AHeader from "./AHeader";
 import { shippingregdelete, shippingregedit } from "../../service/allApi";
@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BASE_URL } from "../../service/baseUrl";
 import ConfirmationModal from "../../components/ConfirmationModal";
+
 function InProduct({ userName }) {
   const { userId, invoice } = useParams();
   const [showEditModal, setShowEditModal] = useState(false);
@@ -17,8 +18,9 @@ function InProduct({ userName }) {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
   const [orders, setOrders] = useState([]);
-  // Inside your component
 
+  // Inside your component
+ 
   // Ensure that handleDeleteConfirmation toggles the state correctly
   const handleDeleteConfirmation = (id) => {
     setDeleteId(id); // Set the delete ID
@@ -35,7 +37,8 @@ function InProduct({ userName }) {
       // You can handle errors here
     }
   };
-
+  
+  
   const fetchBillingData = async (userId, invoiceNumber) => {
     try {
       const response = await fetch(
@@ -151,10 +154,12 @@ function InProduct({ userName }) {
           <p>Are you sure you want to delete this product?</p>
         </Modal.Body>
         <Modal.Footer>
-          <button className="btn btn-secondary" onClick={onRequestClose}>
+          <button className="btn btn-secondary"
+onClick={onRequestClose}>
             Cancel
           </button>
-          <button className="btn btn-danger" onClick={onConfirm}>
+          <button className="btn btn-danger"
+ onClick={onConfirm}>
             Delete
           </button>
         </Modal.Footer>
@@ -241,7 +246,6 @@ function InProduct({ userName }) {
         </div>
         <h2>Product List</h2>
         <ul className="responsive-table">
-          <h4>UserName : {userName}</h4>
 
           <li className="table-header">
             <div className="col col-1">REF ID</div>
@@ -273,6 +277,8 @@ function InProduct({ userName }) {
                   type="button"
                   className="btn btn-primary me-2"
                   onClick={() => handleEditModalOpen(order)}
+                  style={{height:'85%',fontSize:'13px'}}
+
                 >
                   Edit
                 </button>
@@ -280,6 +286,8 @@ function InProduct({ userName }) {
                 <button
                   className="btn btn-danger"
                   onClick={() => handleDeleteConfirmation(order.id)}
+                  style={{height:'85%',fontSize:'13px'}}
+
                 >
                   Cancel
                 </button>
@@ -294,12 +302,15 @@ function InProduct({ userName }) {
               <b>Print Bill</b>{" "}
             </div>
             <div className="col col-1" data-label="Reference ID">
-              <Link to={`/admin/invoice/${userId}/${invoice}`}>
-                <button type="button" className="btn btn-secondary me-2">
-                  {" "}
-                  <i class="fa-solid fa-print"></i>
-                </button>
-              </Link>
+            <Link
+        to={`/admin/invoice/${userId}/${invoice}`}
+       
+      >
+        <button type="button" className="btn btn-secondary me-2">
+          <i className="fa-solid fa-print"></i>
+        </button>
+      </Link>
+
             </div>
           </li>
         </ul>

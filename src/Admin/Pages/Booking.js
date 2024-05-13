@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css"; // Import the CSS for react-toas
 import "./Booking.css";
 import AHeader from "./AHeader";
 import Form from "react-bootstrap/Form";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 // import { adminbooking } from "../../service/allApi";
 import { BASE_URL } from "../../service/baseUrl";
 import axios from "axios";
@@ -26,6 +26,7 @@ import axios from "axios";
 //     </div>
 //   );
 // }
+
 function Booking() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -148,7 +149,12 @@ function Booking() {
       user: userId,
     });
   };
+const handlecancel=async (e)=>{
+  e.preventDefault();
+  sessionStorage.removeItem("formData");
+  navigate(`/admin/`);
 
+}
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
     handleNextClick();
@@ -163,7 +169,7 @@ function Booking() {
     try {
       const config = {
         method: "post",
-        url: "https://api.mrgo.in/api/ShippingRegView/",
+        url: `${BASE_URL}/api/ShippingRegView/`,
         headers: {
           "Content-Type": "application/json",
         },
@@ -250,7 +256,11 @@ toast.success("Booked Successfully")
         </div>
       )}
       <h2 className="text-center">Booking</h2>
+      
+
       <div className="container p-5">
+      
+      <Button style={{marginLeft:'83%',marginTop:'-9%',whiteSpace:'nowrap'}} onClick={handlecancel}>Cancel Booking</Button>
         <div className="row gutters">
           <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 w-100">
             <div className="card h-100" style={{ border: "1px solid black" }}>

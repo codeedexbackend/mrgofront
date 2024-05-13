@@ -67,3 +67,7 @@
     font-weight: bold;
     color: #721C24;
   }
+
+  @media screen and (max-width: 768px) and (min-width: 360px) {
+    
+  }

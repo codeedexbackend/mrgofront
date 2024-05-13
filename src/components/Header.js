@@ -8,7 +8,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Link as RouterLink, useLocation } from "react-router-dom";
-
+import './H.css'
 function CustomAlert({ show, handleClose }) {
   return (
     <Modal show={show} onHide={handleClose} centered>
@@ -110,7 +110,7 @@ useEffect(() => {
   return (
     <div>
       {["xl"].map((expand) => (
-        <Navbar key={expand} expand={expand} className="bg-body-primary mb-3">
+        <Navbar key={expand} expand={expand} className="bg-white mb-3 Navbar text-black" style={{ boxShadow: '0 -1px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 14px 0 rgba(0, 0, 0, 0.19)'}}>
           <Container fluid>
             <Navbar.Brand id="nvb" className=" mt-2" href="/">
               <img
@@ -128,46 +128,55 @@ useEffect(() => {
 
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-${expand}`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="end"
-            >
+  id={`offcanvasNavbar-expand-${expand}`}
+  aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+  placement="end"
+  breakpoint="md" // Adjust the breakpoint to "md" (medium) or "sm" (small) depending on your needs
+>
+
               <Offcanvas.Header closeButton />
               <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
+                <Nav className="justify-content-end flex-grow-1 pe-3" style={{color:'black'}}>
                   <RouterLink
                     to="/"
                     id="hhome"
                     style={{ textDecoration: "none", color: "black" }}
                   >
-                    <Nav.Link className="ms-5 head" href="/">
-                      <b> Home</b>
+                    <Nav.Link className="ms-3 head " id="brder"  href="/">
+                      <b style={{color:'black'}}> Home</b>
+                      
                     </Nav.Link>
+                   
                   </RouterLink>
+                  {tokenExists == null && tokenExists == "" && (
+
                   <RouterLink
                     to="/aboutus"
                     style={{ textDecoration: "none", color: "black" }} 
                   >
                     <Nav.Link
                       href="/aboutus"
-                      className="ms-5 head"
+                      className="ms-3 head"
+                      id="brder"
                     >
-                      <b> About Us</b>
+                      <b style={{color:'black'}}> About Us</b>
                     </Nav.Link>
                   </RouterLink>
+                  )}
+                                    {tokenExists == null && tokenExists == "" && (
 
-                  <NavDropdown
-                    className="ms-5 head"
+                  <NavDropdown 
+                    className="ms-3 head brder"
                     style={{ fontWeight: "bolder" }}
                     title="Services"
-                    id={`offcanvasNavbarDropdown-expand-${expand}`}
-                  >
+                    id={`offcanvasNavbarDropdown-expand-${expand} brder`}
+                    >
                     <RouterLink
                       to="/expressservice"
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       <NavDropdown.Item href="/expressservice">
-                        <b>Express Delivery</b>
+                        <b style={{color:'black'}}>Express Delivery</b>
                       </NavDropdown.Item>
                     </RouterLink>
                     <RouterLink
@@ -175,7 +184,7 @@ useEffect(() => {
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       <NavDropdown.Item href="/smartbox">
-                        <b>Smart Box</b>
+                        <b style={{color:'black'}}>Smart Box</b>
                       </NavDropdown.Item>
                     </RouterLink>
                     <RouterLink
@@ -183,7 +192,7 @@ useEffect(() => {
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       <NavDropdown.Item href="/b2b">
-                        <b>B2B Shipping</b>
+                        <b style={{color:'black'}}>B2B Shipping</b>
                       </NavDropdown.Item>
                     </RouterLink>
                     <RouterLink
@@ -191,10 +200,11 @@ useEffect(() => {
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       <NavDropdown.Item href="/ecommerce">
-                        <b>E-Commerce Shipping</b>
+                        <b style={{color:'black'}}>E-Commerce Shipping</b>
                       </NavDropdown.Item>
                     </RouterLink>
                   </NavDropdown>
+                                    )}
                   {tokenExists !== null && tokenExists !== "" && (
                     <RouterLink
                       to={`/orders/${id}`}
@@ -202,30 +212,33 @@ useEffect(() => {
                       style={{ textDecoration: "none", color: "black" }}
                     >
                       <Nav.Link
-                        className="ms-5 head"
+                        className="ms-3 head"
+                        id="brder"
                         onClick={handleMyOrdersClick}
                       >
-                        <b> My Orders</b>
+                        <b style={{color:'black'}}> My Orders</b>
                       </Nav.Link>
                     </RouterLink>
                   )}
-
+                  {tokenExists == null && tokenExists == "" && (
                   <RouterLink
                     to="/contactus"
                     id="hhome"
                     style={{ textDecoration: "none", color: "black" }}
                   >
-                    <Nav.Link className="ms-5 head" href="/contactus">
-                      <b> Contact Us</b>
+                    <Nav.Link className="ms-3 head"                         id="brder"
+ href="/contactus">
+                      <b style={{color:'black'}}> Contact Us</b>
                     </Nav.Link>
                   </RouterLink>
+                  )}
                   {tokenExists !== null && tokenExists !== "" && (
                     <RouterLink
                       to="/Profile"
                       id="hhome"
                       style={{ textDecoration: "none", color: "black" }}
                     >
-                      <Nav.Link className="ms-5 head" href="/contactus">
+                      <Nav.Link className="ms-3 head" href="/contactus">
                         <i className="fa-regular fa-user"></i>
                         {userName && (
         <span className="ms-3 head">
@@ -238,7 +251,7 @@ useEffect(() => {
                   {tokenExists !== null && tokenExists !== "" ? (
                     <Button 
                       onClick={handleLogout}
-                      className="ms-5 head"
+                      className="ms-3 head losign text-white"
                       type="submit"
                     >
                       Logout
@@ -246,7 +259,7 @@ useEffect(() => {
                   ) : (
                     <Button
                       onClick={handleSignUp}
-                      className="ms-5 head"
+                      className="ms-3 head losign text-white"
                       type="submit"
                     >
                       SignUp 

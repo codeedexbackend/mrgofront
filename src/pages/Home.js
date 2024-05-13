@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link as Element } from "react-scroll";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import {  Button, Col, Form, Row } from "react-bootstrap";
 import hr from "../Assets/Rectangle 112.png";
 
 import Header from "../components/Header";
@@ -10,17 +10,31 @@ import Footer from "../components/Footer";
 import "./Home.css";
 import Freaquently from "../components/Freaquently";
 import { Link, useNavigate } from "react-router-dom";
+import Track2 from "../components/Track2";
 
 function Home() {
   const [tracking_id, setTrackingId] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track user login status
   const navigate = useNavigate();
+  const [trackingIdError, setTrackingIdError] = useState('');
+  const tokenExists = localStorage.getItem("id");
+  const [formData, setFormData] = useState(null); // State to hold form data
+  const [showTrack2, setShowTrack2] = useState(false); // State to manage Track2 component visibility
 
-  const handleTrackOrder = () => {
-    localStorage.setItem("tracking_id", tracking_id);
+  
+  const handleTrackOrder = (e) => {
+    if (!tracking_id.trim()) {
+      // If tracking ID is not filled
+      setTrackingIdError('Tracking ID is required');
+      e.preventDefault(); // Prevent navigation
+    } else {
+      // Proceed with tracking
+      setShowAlert(false);
+      setShowTrack2(true); // Show Track2 component
+      localStorage.setItem("tracking_id", tracking_id);
+    }
   };
-
   useEffect(() => { 
     window.scrollTo(0, 0);
     // Check if user is logged in
@@ -33,40 +47,32 @@ function Home() {
 
   const handleGetStarted = () => {
     if (!isLoggedIn) {
-      setShowAlert(true);
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 5000); // Close after 5 seconds
+      navigate('/login');
     } else {
       // Navigate to the shipping page if the user is logged in
       navigate('/shipping');
     }
   };
+  useEffect(() => {
+    if (!tokenExists) {
+      // If no token exists, set formData from localStorage
+      const storedFormData = localStorage.getItem("formData");
+      if (storedFormData) {
+        setFormData(JSON.parse(storedFormData));
+      }
+    }
+  }, [tokenExists]);
   
-
   return (
     <div>
       <Element name="home">
         <Header />
+        {tokenExists ? null : (
+
         <div className="over">
           <Row className="b resp">
-            <Element name="section2">
-              <div className="img2">
-                <img
-                  style={{
-                    marginRight: "90px",
-                    width: "58%",
-                    paddingTop: "13%",
-                    marginLeft: "24%",
-                    height: "340px",
-                    marginTop:"19%"
-                  }}
-                  src={hr}
-                  alt="etr"
-                />
-              </div>
-            </Element>
-            <Col id="loki">
+           
+            <Col id="lokiok">
               <h1 className="hh ms-5">
                 <span id="hhv">
                   <b>We Are Delivering Your</b>
@@ -92,23 +98,44 @@ function Home() {
                   variant="primary"
                   onClick={handleGetStarted}
                 >
-                  Get Started
+                  Get Started 
                 </Button>
+
               </Row>
             </Col>
+            
             <Col
               style={{ marginTop: "130px", marginLeft: "-210px" }}
               className="img78"
             >
               <img
                 id="mn"
-                style={{ width: "100%", height: "532px", marginTop: "-30px" }}
+                style={{ width: "110%", height: "532px", marginTop: "-30px" }}
                 src="https://i.postimg.cc/4dk43fVB/52938d0635e18aed5998dd7e6642f0db.png"
                 alt="rtw"
               />
             </Col>
+            
           </Row>
+          <Element name="section2">
+              <div className="img2">
+                <img
+                  style={{
+                    marginRight: "90px",
+                    width: "58%",
+                    paddingTop: "13%",
+                    marginLeft: "24%",
+                    height: "340px",
+                    marginTop:"-81%"
+                  }}
+                  src={hr}
+                  alt="etr"
+                />
+              </div>
+            </Element>
         </div>
+            )}
+
       </Element>
 
       <Element name="section3" >
@@ -120,6 +147,8 @@ function Home() {
             estimated arrival times make waiting a thing of the past.
           </p>
           <div>
+            
+           
             <Row>
               <Col className=" mt-2">
                 <Form className="container w-75 ms-5 ">
@@ -131,15 +160,18 @@ function Home() {
                     <Form.Control
                       id="bbbbc"
                       type="text"
-                      placeholder="Order Id"
+                      placeholder="Tracking Id"
                       value={tracking_id}
                       onChange={(e) => setTrackingId(e.target.value)}
                     />
+                     {trackingIdError && (
+              <Form.Text style={{marginLeft:'-41%',whiteSpace:'nowrap'}} className="text-danger">{trackingIdError}</Form.Text>
+            )}
                   </Form.Group>
                 </Form>
               </Col>
               <Col>
-                <Link to={"/track"} onClick={handleTrackOrder}>
+                <Link  onClick={handleTrackOrder}>
                   <Button
                     style={{ paddingLeft: "5px" }}
                     className="  ttt  text-white"
@@ -147,13 +179,28 @@ function Home() {
                     variant="primary"
                     size="lg"
                     active
+                    
                   >
                     <span id="hy">Track Your Order</span>
                   </Button>
                 </Link>
               </Col>
+              
             </Row>
+            {tokenExists !== null && tokenExists !== "" && (
+
+            <Row className="container resp" style={{width:'50%'}}>
+                <Button style={{whitespace:'nowrap'}}
+                  id="bttt"
+                  variant="primary"
+                  onClick={handleGetStarted}
+                >
+                  Get Started <i class="fa-solid fa-arrow-right"></i>
+                </Button>
+              </Row>
+            )}
           </div>
+          {showTrack2 && <Track2 />}
         </div>
       </Element>
 
@@ -169,7 +216,7 @@ function Home() {
         </div>
       </Element>
 
-      <Freaquently></Freaquently>
+      <div style={{marginTop:"12%"}}><Freaquently ></Freaquently></div>
 
       <Element name="footer">
         <div>
@@ -177,15 +224,7 @@ function Home() {
         </div>
       </Element>
 
-      {/* Alert for prompting users to login */}
-      {showAlert && (
-        <div className="alert-container">
-          <div className="alert">
-            <p className="alert-message">Please login first!</p>
-            <button className="close-button" onClick={() => setShowAlert(false)}>Close</button>
-          </div>
-        </div>
-      )}
+    
     </div>
   );
 }

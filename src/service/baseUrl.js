@@ -1,1 +1,1 @@
-export const BASE_URL='https://api.mrgo.in'
+export const BASE_URL='http://192.168.1.3:8000/'

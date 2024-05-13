@@ -5,15 +5,15 @@ div[style*="background-color:white;"] {
     background-color: white;
 }
 .pt{
-    width: 30%;
+    width: 100%;
     height:70px ;
-    margin-left: 130px;
+    /* margin-left: 130px; */
     
     
 }
 #abimage{
     width: 100%;
-    height: 500px;
+    height: 100%;
     margin-top: -2%;
 }
 
@@ -40,7 +40,7 @@ margin-top: -16px;
     }
     
    .pt{
-    width: 36%;
+    width: 100%;
     height: 57px;
     margin-left: 77px;
     margin-top: -17px;
@@ -52,3 +52,12 @@ margin-top: -16px;
 }
 
 /* Add more media queries and styles as needed for other screen sizes */
+.lppl{
+    
+        font-family: "Montserrat", sans-serif ;
+        font-weight: 500;
+        line-height: 24.38px;
+        color: black;
+        text-align: left;
+    
+}
